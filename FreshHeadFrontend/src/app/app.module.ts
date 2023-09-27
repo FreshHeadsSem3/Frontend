@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './home/homepage/homepage.component';
 import { DealsComponent } from './deal/deals/deals.component';
 import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
-import { DealComponent } from './model/deal/deal/deal.component';
+import { CompanyComponent } from './company/company/company.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
     DealsComponent,
     InfoDealsComponent,
-    DealComponent
+    CompanyComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
