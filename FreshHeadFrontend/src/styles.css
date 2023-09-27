@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Neutrif";
+  src: url('../fonts/NeutrifStudio-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/Proxima Nova Extrabold.ttf');
+}

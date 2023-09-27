@@ -1,0 +1,22 @@
+.title_container {width: 50vw}
+
+.title {
+  font-family: Proxima;
+  font-size: 45px;
+  line-height: 50px;
+  color: #262b30;
+}
+
+.deal_image{
+  max-width: 50vw;
+  padding-top: 3vh
+}
+
+.description{
+  max-width: 50vw;
+  font-family: Neutrif;
+  margin: 0;
+  font-size: 20px;
+  line-height: 36px;
+  color: #262b30;
+}
