@@ -1,5 +1,9 @@
 import { Component  } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import {DealService} from "../../service/deal.service";
+import {Router} from "@angular/router";
+import {Guid} from "guid-typescript";
+import {Createmodel} from "../../model/deal/createmodel";
 
 
 @Component({
@@ -13,6 +17,11 @@ export class CreateDealComponent {
   title: string = '';
   description: string = '';
   image: string = '';
+
+  constructor(private dealService: DealService, private router: Router) {
+
+  }
+
 
   convertToDate(ngbDate: NgbDate | null): Date | null {
     if (ngbDate === null) {
@@ -30,14 +39,20 @@ export class CreateDealComponent {
 
     if (!this.isValid()) {
       console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
-      return;
     }
-
+    let deal: Createmodel = new Createmodel("47b2cd37-05d8-49d7-a830-442366ce76cf", this.title, this.description, [this.image])
+    this.dealService.postDeal(deal).subscribe(result =>{
+      if(result == null){
+        console.log("deal is empty")
+      } else {
+        this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
+      }
+    })
   }
 
   isValid(): boolean {
 
-    return true; 
+    return true;
   }
 
   cancel() {

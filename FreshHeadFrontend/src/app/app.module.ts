@@ -11,8 +11,6 @@ import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
 import { CompanyComponent } from './company/company/company.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateDealComponent } from './deal/create-deal/create-deal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 
 @NgModule({
@@ -29,7 +27,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     BsDatepickerModule.forRoot(),
     AppRoutingModule,
-    NgbModule
     HttpClientModule
   ],
   providers: [],

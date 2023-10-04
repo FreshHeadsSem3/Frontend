@@ -1,12 +1,12 @@
 <div style="display: flex">
   <div class="filterMenu">
   </div>
-  <div class="container">
-    <div class="card" *ngFor="let n of AllDeals" [style.maxHeight.px]="imageDiv.clientWidth*2" (click)="navigateInfoDeal(n.id)">
-      <div class="cardImage" #imageDiv>
+  <div class="cardContainer">
+    <div class="dealCard" *ngFor="let n of AllDeals" [style.maxHeight.px]="imageDiv.clientWidth*2" (click)="navigateInfoDeal(n.id)">
+      <div class="dealCardImage" #imageDiv>
         <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
       </div>
-      <div class="cardText" [style.maxWidth.px]="imageDiv.clientWidth-40">
+      <div class="dealCardText" [style.maxWidth.px]="imageDiv.clientWidth-40">
         <h1>{{ n.title }}</h1>
         <p class="textcontainer">{{ n.description }}</p>
       </div>

@@ -1,4 +1,4 @@
-.card {
+.dealCard {
   overflow: hidden;
   max-height: 47vh;
   max-width: fit-content;
@@ -13,25 +13,27 @@
   transition: 0.4s;
 }
 
-.card:hover {
+.dealCard:hover {
   scale: 1.03;
 }
 
-.cardImage{
+.dealCardImage{
   max-width: fit-content;
   max-height: 50%;
   overflow: hidden;
 }
 
-.cardText{
+.dealCardText{
   padding: 0 20px 20px;
-  max-height: 38%;
+  height: 45%;
   overflow: hidden;
 }
 
 h1{
   margin-top: 5px;
-  font-family: Neutrif
+  font-family: Neutrif;
+  font-weight: 600;
+  font-size: x-large;
 }
 
 p{
@@ -50,7 +52,7 @@ img{
   width: 20vw
 }
 
-.container{
+.cardContainer{
   background-color: white;
   min-height: 94vh;
   width: 80vw;
