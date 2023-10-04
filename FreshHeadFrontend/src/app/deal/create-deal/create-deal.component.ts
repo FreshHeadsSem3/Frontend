@@ -1,6 +1,5 @@
-import { Component, ViewChild, ElementRef  } from '@angular/core';
-import { NgbDateStruct, NgbCalendar, NgbDatepickerNavigateEvent, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
-
+import { Component  } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -8,23 +7,14 @@ import { NgbDateStruct, NgbCalendar, NgbDatepickerNavigateEvent, NgbDatepicker }
   templateUrl: './create-deal.component.html',
   styleUrls: ['./create-deal.component.css']
 })
+
 export class CreateDealComponent {
-  model: NgbDateStruct;
-	date: NgbDateStruct;
-  @ViewChild('someViewChildReference') someViewChildVariable!: ElementRef;
-  @ViewChild('dp') dp!: NgbDatepicker;
+  selectedDate: NgbDate | null = null;
 
-	constructor(private calendar: NgbCalendar) {
-    this.model = this.calendar.getToday();
-    this.date = {year: this.model.year, month: this.model.month, day: this.model.day}
-  }
-
-	selectToday() {
-		this.model = this.calendar.getToday();
-  }
-
-
-  onDateNavigate(event: NgbDatepickerNavigateEvent) {
-    //this.date = event.next;
+  convertToDate(ngbDate: NgbDate | null): Date | null {
+    if (ngbDate === null) {
+      return null;
+    }
+    return new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
   }
 }

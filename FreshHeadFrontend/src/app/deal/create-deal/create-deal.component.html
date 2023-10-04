@@ -36,22 +36,25 @@
             </div>
           </div>
           <!-- Address -->
-<div class="container">
-    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="onDateNavigate($event)"></ngb-datepicker>
 
-    <button class="btn btn-sm btn-outline-primary me-2" (click)="dp.navigateTo()">To current month</button>
-    <button class="btn btn-sm btn-outline-primary me-2" (click)="dp.navigateTo({year: 2013, month: 2})">To Feb 2013</button>
-    
-    <pre>Model: {{ model | json }}</pre>
-</div>
-  
+          <div class="card mb-4">
+            <div card="card-body">
+            <h2>Datepicker Example</h2>
+            <div class="form-group">
+              <label for="datepicker">Select a Date:</label>
+              <ngb-datepicker [(ngModel)]="selectedDate"></ngb-datepicker>
+            </div>
+            <div>
+              Selected Date: {{ convertToDate(selectedDate) | date: 'yyyy-MM-dd' }}
+            </div>
+            
+          </div>
 
 
    
 
 <hr/>
 
-<pre>Model: {{ model | json }}</pre>
           <!-- Status -->
           <div class="card mb-4">
             <div class="card-body">
