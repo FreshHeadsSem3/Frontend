@@ -1,13 +1,16 @@
+
 <div class="container-fluid">
 
     <div class="container">
       <!-- Title -->
       <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
         <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i class="bi bi-arrow-left-square me-2"></i></a> Voeg een nieuwe deal toe</h2>
-        <div class="hstack gap-3">
-          <button class="btn btn-light btn-sm btn-icon-text"><i class="bi bi-x"></i> <span class="text">Cancel</span></button>
-          <button class="btn btn-primary btn-sm btn-icon-text"><i class="bi bi-save"></i> <span class="text">Save</span></button>
-        </div>
+        <div class="btn-group">
+            <form (ngSubmit)="onSubmit()">
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Annuleren</button>
+            </form>
+          </div>
       </div>
     
       <!-- Main content -->
@@ -22,13 +25,13 @@
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Titel</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="title">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Beschrijving</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="description">
                   </div>
                 </div>
               </div>
@@ -65,7 +68,7 @@
           <div class="card mb-4">
             <div class="card-body">
               <h3 class="h6">Foto</h3>
-              <input class="form-control" type="file">
+              <input type="text" class="form-control" [(ngModel)]="image">
             </div>
           </div>
           <!-- Notes -->
