@@ -7,8 +7,14 @@
   flex-grow: 1;
   background: #fad9e7;
   margin: 10px;
-  border-radius: 3px;
+  border-radius: 20px;
   box-shadow: 3px 3px 5px #0000005c;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card:hover {
+  scale: 1.03;
 }
 
 .cardImage{

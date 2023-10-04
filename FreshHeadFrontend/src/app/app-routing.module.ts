@@ -6,10 +6,10 @@ import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 import {DealsComponent} from "./deal/deals/deals.component";
 
 const routes: Routes = [
-  { path: 'deal', component: InfoDealsComponent, pathMatch: 'full'},
+  { path: '', component: DealsComponent, pathMatch: 'full'},
   { path: 'create-deal', component: CreateDealComponent},
   { path: 'company', component: CompanyComponent},
-  { path: 'alldeals', component: DealsComponent}
+  { path: 'deal', component: InfoDealsComponent}
 ];
 
 @NgModule({
