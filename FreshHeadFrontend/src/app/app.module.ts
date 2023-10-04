@@ -8,6 +8,7 @@ import { DealsComponent } from './deal/deals/deals.component';
 import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
 import { CompanyComponent } from './company/company/company.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     DealsComponent,
     InfoDealsComponent,
     CompanyComponent,
-    NavbarComponent
+    NavbarComponent,
+    CreateDealComponent
   ],
   imports: [
     BrowserModule,
