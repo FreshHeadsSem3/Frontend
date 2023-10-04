@@ -6,8 +6,8 @@ import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 import {DealsComponent} from "./deal/deals/deals.component";
 
 const routes: Routes = [
-  { path: '', component: InfoDealsComponent, pathMatch: 'full'},
-  { path: 'create-deal', component: CreateDealComponent}
+  { path: 'deal', component: InfoDealsComponent, pathMatch: 'full'},
+  { path: 'create-deal', component: CreateDealComponent},
   { path: 'company', component: CompanyComponent},
   { path: 'alldeals', component: DealsComponent}
 ];

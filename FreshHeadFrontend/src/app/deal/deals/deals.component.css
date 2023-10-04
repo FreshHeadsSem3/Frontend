@@ -1,20 +1,57 @@
-.card{
-  max-width: 20vw;
+.card {
   overflow: hidden;
-  max-height: 30vw;
-  padding: 20px;
-  background: yellow;
+  max-height: 47vh;
+  max-width: fit-content;
+  min-width: 15vw;
+  flex-basis: 200px;
+  flex-grow: 1;
+  background: #fad9e7;
   margin: 10px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px #0000005c;
+}
+
+.cardImage{
+  max-width: fit-content;
+  max-height: 50%;
+  overflow: hidden;
+}
+
+.cardText{
+  padding: 0 20px 20px;
+  max-height: 38%;
+  overflow: hidden;
+}
+
+h1{
+  margin-top: 5px;
+  font-family: Neutrif
+}
+
+p{
+  font-family: Neutrif
 }
 
 img{
   max-width: 100%;
+  max-height: 50%;
+  overflow: hidden;
+}
+
+.filterMenu{
+  background-color: white;
+  min-height: 94vh;
+  width: 20vw
 }
 
 .container{
-  background-color: #66ff00;
+  background-color: white;
   min-height: 94vh;
   width: 80vw;
   display: flex;
   flex-wrap: wrap
+}
+
+.textcontainer{
+  max-height: 20px;
 }
