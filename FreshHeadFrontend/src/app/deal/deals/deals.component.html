@@ -1,3 +1,12 @@
-<div style="background-color: green; min-height: 94vh; min-width: 20vw">
-
+<div style="display: flex">
+  <div style="background-color: green; min-height: 94vh; width: 20vw">
+  </div>
+  <div class="container">
+    <div class="card" *ngFor="let n of AllDeals">
+      <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
+      <h1>{{ n.title }}</h1>
+      <p>{{ n.description }}</p>
+    </div>
+  </div>
 </div>
+<router-outlet></router-outlet>
