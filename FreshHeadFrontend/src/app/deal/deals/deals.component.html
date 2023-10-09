@@ -2,7 +2,7 @@
   <div class="filterMenu">
   </div>
   <div class="cardContainer">
-    <div class="dealCard" *ngFor="let n of AllDeals" [style.maxHeight.px]="imageDiv.clientWidth*2" (click)="navigateInfoDeal(n.id)">
+    <div class="dealCard" *ngFor="let n of AllDeals" (click)="navigateInfoDeal(n.id)">
       <div class="dealCardImage" #imageDiv>
         <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
       </div>
