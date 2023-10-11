@@ -44,3 +44,15 @@
   font-family: Neutrif;
   color: #262b30;
 }
+
+/* For the pop-up claim-deal */
+.claim-deal-dialog-container {
+  max-width: 80%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.claim-deal-dialog-overlay {
+  background-color: blue;
+}
+

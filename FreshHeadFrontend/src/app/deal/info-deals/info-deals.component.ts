@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import {Guid} from "guid-typescript";
 import {DealService} from "../../service/deal.service";
 import {Deal} from "../../model/deal/deal";
+import {ClaimDealComponent} from "./claim-deal/claim-deal.component";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 
 @Component({
@@ -14,7 +16,7 @@ export class InfoDealsComponent {
   public DealID!: Guid
   public deal!: Deal
 
-  constructor(private dealService: DealService, private router: ActivatedRoute) {
+  constructor(private dealService: DealService, private router: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -27,6 +29,12 @@ export class InfoDealsComponent {
           this.deal = result;
         }
       })
+    });
+  }
+
+  openClaimDeal(){
+    let dialogRef = this.dialog.open(ClaimDealComponent, {
+      data: {deal: this.deal}
     });
   }
 
