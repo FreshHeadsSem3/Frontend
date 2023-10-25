@@ -37,7 +37,7 @@
               <div class="col-lg-6">
                 <div class="mb-3">
                   <label class="form-label">KVK</label>
-                  <input type="number" class="form-control" [(ngModel)]="kvk">
+                  <input type="number" pattern="[0-9]*" maxlength="8" class="form-control" [(ngModel)]="kvk" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                 </div>
               </div>
             </div>
@@ -46,18 +46,6 @@
         </div>
         <!-- Address -->
 
-
-        <!-- Status -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <h3 class="h6">Aantal</h3>
-            <select class="form-select">
-              <option value="draft" selected="">Draft</option>
-              <option value="active">Active</option>
-              <option value="active">Inactive</option>
-            </select>
-          </div>
-        </div>
         <!-- Avatar -->
         <div class="card mb-4">
           <div class="card-body">

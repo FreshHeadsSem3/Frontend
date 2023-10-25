@@ -15,13 +15,12 @@ import {Createmodel} from "../../model/company/createmodel";
 export class CreateCompanyComponent {
   title: string = '';
   description: string = '';
-  kvk: number = 12345678;
+  kvk: number = NaN;
   image: string = '';
 
   constructor(private companyService: CompanyService, private router: Router) {
 
   }
-
 
   convertToDate(ngbDate: NgbDate | null): Date | null {
     if (ngbDate === null) {
