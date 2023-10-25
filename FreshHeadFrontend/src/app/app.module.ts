@@ -11,6 +11,7 @@ import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
 import { CompanyComponent } from './company/company/company.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateDealComponent } from './deal/create-deal/create-deal.component';
+import { CreateCompanyComponent } from './company/create-company/create-company.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CreateDealComponent } from './deal/create-deal/create-deal.component';
     CompanyComponent,
     NavbarComponent,
     CreateDealComponent,
+    CreateCompanyComponent,
   ],
   imports: [
     BrowserModule,
