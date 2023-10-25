@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Deal} from "../model/deal/deal";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
+import {EmailModel} from "../model/email-model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class DealService {
   postDeal(createDeal: Createmodel) : Observable<Deal>{
     console.log(createDeal)
     return this.http.post<Deal>('https://localhost:51800/deal/', JSON.stringify(createDeal), this.httpOptions)
+  }
+
+  postMail(emailModel: EmailModel) : Observable<boolean>{
+    return this.http.post<boolean>('https://localhost:51800/deal/claimdeal/', JSON.stringify(emailModel), this.httpOptions)
   }
 }

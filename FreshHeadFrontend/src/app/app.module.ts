@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +11,8 @@ import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
 import { CompanyComponent } from './company/company/company.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateDealComponent } from './deal/create-deal/create-deal.component';
-import {ClaimDealComponent} from "./deal/info-deals/claim-deal/claim-deal.component";
+import { ModalComponent } from './modals/modal/modal.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import {ClaimDealComponent} from "./deal/info-deals/claim-deal/claim-deal.compon
     CompanyComponent,
     NavbarComponent,
     CreateDealComponent,
-    ClaimDealComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,7 @@ import {ClaimDealComponent} from "./deal/info-deals/claim-deal/claim-deal.compon
     BsDatepickerModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    MatDialogModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

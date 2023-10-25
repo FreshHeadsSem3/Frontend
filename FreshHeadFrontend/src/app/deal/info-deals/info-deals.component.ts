@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import {Guid} from "guid-typescript";
 import {DealService} from "../../service/deal.service";
 import {Deal} from "../../model/deal/deal";
-import {ClaimDealComponent} from "./claim-deal/claim-deal.component";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {ModalService} from "../../service/modal.service";
+import {EmailModel} from "../../model/email-model";
 
 
 @Component({
@@ -15,8 +15,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog
 export class InfoDealsComponent {
   public DealID!: Guid
   public deal!: Deal
+  public modalErrorMSG : string = ""
+  public UserEmail: string = ""
+  public disableSendButton: boolean = false
 
-  constructor(private dealService: DealService, private router: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private dealService: DealService, private router: ActivatedRoute, protected modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -32,10 +35,21 @@ export class InfoDealsComponent {
     });
   }
 
-  openClaimDeal(){
-    let dialogRef = this.dialog.open(ClaimDealComponent, {
-      data: {deal: this.deal}
-    });
+  public SendEmail(){
+    if(this.UserEmail.length > 1) {
+      this.disableSendButton = true
+      this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail, "Dit is een test")).subscribe(
+        result => {
+          if (result == null || result == false) {
+            this.modalErrorMSG = "Mail is niet verzonden"
+            this.disableSendButton = false
+          } else {
+            this.modalErrorMSG = ""
+            this.modalService.close()
+            this.disableSendButton = false
+          }
+        }
+      )
+    }
   }
-
 }
