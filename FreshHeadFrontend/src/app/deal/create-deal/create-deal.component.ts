@@ -4,6 +4,8 @@ import {DealService} from "../../service/deal.service";
 import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/deal/createmodel";
+import { Company } from 'src/app/model/company/company';
+import { CompanyService } from 'src/app/service/company.service';
 
 
 @Component({
@@ -17,11 +19,19 @@ export class CreateDealComponent {
   title: string = '';
   description: string = '';
   image: string = '';
+  companies!: Company[];
+  companyID!: Guid;
 
-  constructor(private dealService: DealService, private router: Router) {
-
+  constructor(private dealService: DealService, private router: Router, private companyService: CompanyService) {
+    companyService.getCompanies()
+      .subscribe(result => {
+        if (result == null){
+          //toastr errormessage
+        } else {
+          this.companies = result;
+        }
+      })
   }
-
 
   convertToDate(ngbDate: NgbDate | null): Date | null {
     if (ngbDate === null) {
@@ -40,7 +50,7 @@ export class CreateDealComponent {
     if (!this.isValid()) {
       console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
     }
-    let deal: Createmodel = new Createmodel("47b2cd37-05d8-49d7-a830-442366ce76cf", this.title, this.description, [this.image])
+    let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, [this.image])
     this.dealService.postDeal(deal).subscribe(result =>{
       if(result == null){
         console.log("deal is empty")
