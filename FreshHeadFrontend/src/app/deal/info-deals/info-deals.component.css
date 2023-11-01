@@ -32,10 +32,21 @@
 
 .corner_button{
   position: fixed;
-  width: 14%;
-  height: 7%;
+  padding: 10px;
   bottom: 5vh;
   right: 5vh;
+  border-radius: 50px;
+  background-color: white;
+  border-color: #00a6fb;
+  border-width: 3px;
+  box-shadow: 3px 3px 5px #0000005c;
+  font-family: Neutrif;
+  font-size: larger;
+  color: #262b30;
+}
+
+.mail-button{
+  width: fit-content;
   border-radius: 50px;
   background-color: white;
   border-color: #00a6fb;
@@ -43,4 +54,23 @@
   box-shadow: 3px 3px 5px #0000005c;
   font-family: Neutrif;
   color: #262b30;
+  padding: 10px
+}
+
+.exit-button {
+  float: right;
+  width: fit-content;
+  height: 7%;
+  border-radius: 50px;
+  background-color: white;
+  border-color: #00a6fb;
+  border-width: 2px;
+  box-shadow: 3px 3px 5px #0000005c;
+  font-family: Neutrif;
+  color: #262b30;
+  padding: 10px
+}
+
+.mail-button[disabled]{
+  border-color: #767676;
 }
