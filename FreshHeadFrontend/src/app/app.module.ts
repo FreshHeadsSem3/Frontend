@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ToastrModule } from 'ngx-toastr'
 import { FormsModule } from '@angular/forms';
 import { DealsComponent } from './deal/deals/deals.component';
 import { InfoDealsComponent } from './deal/info-deals/info-deals.component';
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     BrowserModule,
     FormsModule,
     BsDatepickerModule.forRoot(),
+    ToastrModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule

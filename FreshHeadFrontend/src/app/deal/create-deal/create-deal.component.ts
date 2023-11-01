@@ -40,7 +40,7 @@ export class CreateDealComponent {
     if (!this.isValid()) {
       console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
     }
-    let deal: Createmodel = new Createmodel("47b2cd37-05d8-49d7-a830-442366ce76cf", this.title, this.description, [this.image])
+    let deal: Createmodel = new Createmodel("7661fdca-8c92-4c8d-a70c-717d34b3d162", this.title, this.description, [this.image])
     this.dealService.postDeal(deal).subscribe(result =>{
       if(result == null){
         console.log("deal is empty")

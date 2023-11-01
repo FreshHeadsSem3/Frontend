@@ -5,7 +5,7 @@ import {DealService} from "../../service/deal.service";
 import {Deal} from "../../model/deal/deal";
 import {ModalService} from "../../service/modal.service";
 import {EmailModel} from "../../model/email-model";
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-info-deals',
@@ -15,11 +15,10 @@ import {EmailModel} from "../../model/email-model";
 export class InfoDealsComponent {
   public DealID!: Guid
   public deal!: Deal
-  public modalErrorMSG : string = ""
   public UserEmail: string = ""
   public disableSendButton: boolean = false
 
-  constructor(private dealService: DealService, private router: ActivatedRoute, protected modalService: ModalService) {
+  constructor(private dealService: DealService, private router: ActivatedRoute, protected modalService: ModalService, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -41,10 +40,10 @@ export class InfoDealsComponent {
       this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail, "Dit is een test")).subscribe(
         result => {
           if (result == null || result == false) {
-            this.modalErrorMSG = "Mail is niet verzonden"
+            this.toastr.error("Mail is niet verzonden", "Error")
             this.disableSendButton = false
           } else {
-            this.modalErrorMSG = ""
+            this.toastr.success("Mail is succesvol verzonden", "Voltooid")
             this.modalService.close()
             this.disableSendButton = false
           }

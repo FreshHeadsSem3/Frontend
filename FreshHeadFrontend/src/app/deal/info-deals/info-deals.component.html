@@ -4,10 +4,9 @@
     <h1 class="title">{{ this.deal.title}} </h1>
   </div>
   <p class="description">{{ this.deal.description}} </p>
-  <button class="corner_button" (click)="modalService.open('modal-1')">Deal gebruiken</button>
+  <button class="corner_button" (click)="modalService.open('modal-1')">Ik doe mee!</button>
 
   <jw-modal id="modal-1">
-    <h1 *ngIf="this.modalErrorMSG.length > 1" style="color: red">{{this.modalErrorMSG}}</h1>
     <h1>{{this.deal.title}}</h1>
     <p>Meld je aan voor deze Deal!<br> Hiervoor hebben wij alleen jouw E-mail address nodig.</p>
     <input type="text" placeholder="E-mail address" [(ngModel)]="UserEmail"/><br><br>
