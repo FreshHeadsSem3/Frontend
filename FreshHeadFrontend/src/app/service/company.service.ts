@@ -19,6 +19,10 @@ export class CompanyService {
     return this.http.get<Company>('https://localhost:51800/company/'+companyID.toString(), this.httpOptions)
   }
 
+  getCompanies() : Observable<Company[]>{
+    return this.http.get<Company[]>('https://localhost:51800/company/', this.httpOptions)
+  }
+
   postCompany(createCompany: Createmodel) : Observable<Company>{
     console.log(createCompany)
     return this.http.post<Company>('https://localhost:51800/company/', JSON.stringify(createCompany), this.httpOptions)
