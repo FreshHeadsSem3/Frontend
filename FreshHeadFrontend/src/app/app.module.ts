@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 import { ModalComponent } from './modals/modal/modal.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CreateCompanyComponent } from './company/create-company/create-company.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     NavbarComponent,
     CreateDealComponent,
     ModalComponent
+    CreateCompanyComponent,
   ],
   imports: [
     BrowserModule,
