@@ -14,7 +14,7 @@ export class DealsComponent {
   public ErrorMassage: string = "";
   public mynumbers: number[] = [1,2,43,4,5,7,43,23,423,5,25,2]
 
-  constructor(private dealService: DealService, private router: Router) {
+  constructor(private dealService: DealService, private router: Router, private toastr: Toa) {
     this.dealService.getAllDeals()
       .subscribe(element => {
         if (element == null){

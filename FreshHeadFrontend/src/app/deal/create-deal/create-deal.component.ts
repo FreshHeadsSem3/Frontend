@@ -4,6 +4,7 @@ import {DealService} from "../../service/deal.service";
 import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/deal/createmodel";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateDealComponent {
   description: string = '';
   image: string = '';
 
-  constructor(private dealService: DealService, private router: Router) {
+  constructor(private dealService: DealService, private router: Router, private Toastr: ToastrService) {
 
   }
 
@@ -38,13 +39,14 @@ export class CreateDealComponent {
     console.log('Foto:', this.image);
 
     if (!this.isValid()) {
-      console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
+      this.Toastr.error("Er is een fout met een van de velden", "Error")
     }
     let deal: Createmodel = new Createmodel("7661fdca-8c92-4c8d-a70c-717d34b3d162", this.title, this.description, [this.image])
     this.dealService.postDeal(deal).subscribe(result =>{
       if(result == null){
-        console.log("deal is empty")
+        this.Toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
       } else {
+        this.Toastr.success("Deal is succesvol opgeslagen", "Succes!")
         this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
       }
     })
