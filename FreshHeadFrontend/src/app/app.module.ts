@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import { CompaniesComponent } from './company/companies/companies.component';
 import { CancelDealComponent } from './deal/cancel-deal/cancel-deal.component';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,13 @@ import { CancelDealComponent } from './deal/cancel-deal/cancel-deal.component';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
