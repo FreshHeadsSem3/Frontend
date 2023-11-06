@@ -56,7 +56,7 @@ export class CreateDealComponent {
       if(result == null){
         this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
       } else {
-        this.Toastr.success("Deal is succesvol opgeslagen", "Succes!")
+        this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
         this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
       }
     })
@@ -68,8 +68,7 @@ export class CreateDealComponent {
   }
 
   cancel() {
-
-    console.log('Formulier geannuleerd');
+    this.toastr.info("Deal verwijderd", "Info")
   }
 
 }

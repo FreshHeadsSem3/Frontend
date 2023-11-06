@@ -25,7 +25,7 @@ import { CreateCompanyComponent } from './company/create-company/create-company.
     CompanyComponent,
     NavbarComponent,
     CreateDealComponent,
-    ModalComponent
+    ModalComponent,
     CreateCompanyComponent,
   ],
   imports: [
