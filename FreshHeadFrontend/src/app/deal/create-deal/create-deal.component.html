@@ -34,6 +34,18 @@
                     <input type="text" class="form-control" [(ngModel)]="description">
                   </div>
                 </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label for="categories">Select Categories</label>
+                    <ng-multiselect-dropdown
+                    [settings]="categoryDropdownSettings"
+      [data]="selectedCategories"
+      [(ngModel)]="selectedItems"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)"
+    >
+                    </ng-multiselect-dropdown>
+                </div>
               </div>
 
             </div>
@@ -62,16 +74,19 @@
               </select>
             </div>
           </div>
-
-          <!-- Avatar -->
+          <div card="card-body">
+            <h3 class="h6 mb-4">Tot wanneer geldt de Deal</h3>
+            <div class="form-group">
+              <ejs-datetimepicker
+              [(ngModel)]="selectedDate"></ejs-datetimepicker>
+            </div>
+          </div>
           <div class="card mb-4">
             <div class="card-body">
               <h3 class="h6">Foto</h3>
               <input type="text" class="form-control" [(ngModel)]="image">
             </div>
           </div>
-          <!-- Notes -->
-
         </div>
       </div>
     </div>
