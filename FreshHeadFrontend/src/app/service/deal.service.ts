@@ -5,6 +5,7 @@ import {Deal} from "../model/deal/deal";
 import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
+import {EmailModel} from "../model/email-model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,11 @@ export class DealService {
     return this.http.post<Deal>('https://localhost:5001/deal/', JSON.stringify(createDeal), this.httpOptions)
   }
 
+  postMail(emailModel: EmailModel) : Observable<boolean>{
+    return this.http.post<boolean>('https://localhost:51800/deal/claimdeal/', JSON.stringify(emailModel), this.httpOptions)
+  }
+
   getAllCategories() : Observable<Category[]>{
     return this.http.get<Category[]>('https://localhost:5001/dealCategory', this.httpOptions)
   }
-
-
 }

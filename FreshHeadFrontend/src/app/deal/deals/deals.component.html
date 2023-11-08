@@ -10,6 +10,10 @@
         <h1>{{ n.title }}</h1>
         <p class="textcontainer">{{ n.description }}</p>
       </div>
+      <div class="dealCardExpire">
+        <p class="dealCardExpireDate" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
+        <p class="dealCardExpireParticipants" *ngIf="n.maxParticipents > 0">{{n.maxParticipents - n.claimed}} over</p>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,25 @@
+jw-modal {
+  display: none;
+
+  .jw-modal {
+    text-align: -webkit-center;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background-color: #00000075;
+    padding: 3vw;
+    overflow: auto;
+  }
+
+  .jw-modal-body{
+    max-width: 900px;
+    border-radius: 5px;
+    text-align: start;
+    padding: 20px;
+    background: #ffffff;
+  }
+}
+
+body.jw-modal-open{
+  overflow: hidden;
+}

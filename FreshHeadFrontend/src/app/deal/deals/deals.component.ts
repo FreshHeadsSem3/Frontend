@@ -3,6 +3,7 @@ import {Deal} from "../../model/deal/deal";
 import {DealService} from "../../service/deal.service";
 import { Router } from '@angular/router';
 import {Guid} from "guid-typescript";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-deals',
@@ -12,21 +13,23 @@ import {Guid} from "guid-typescript";
 export class DealsComponent {
   public AllDeals: Deal[] = [];
   public ErrorMassage: string = "";
-  public mynumbers: number[] = [1,2,43,4,5,7,43,23,423,5,25,2]
 
-  constructor(private dealService: DealService, private router: Router) {
+  constructor(private dealService: DealService, private router: Router, private toastr: ToastrService) {
     this.dealService.getAllDeals()
       .subscribe(element => {
         if (element == null){
-          this.ErrorMassage == "No deals where found";
+          this.toastr.error("Er zijn geen deals gevonden", "Error")
         } else {
           this.AllDeals = element
-          console.log("hallo", this.AllDeals)
         }
       })
   }
 
   navigateInfoDeal(dealID: Guid) {
     this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(dealID) } });
+  }
+
+  public MustDateBeShown(date: Date) : Boolean {
+    return new Date(date) > new Date("2001-01-01");
   }
 }
