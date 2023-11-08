@@ -11,30 +11,30 @@ import {EmailModel} from "../model/email-model";
   providedIn: 'root'
 })
 export class DealService {
-
+  private apiURL = 'https://localhost:51800/deal';
   httpOptions = {
     headers: new HttpHeaders().set('Content-Type', 'application/json')
   }
   constructor(private http: HttpClient) {}
 
   getAllDeals() : Observable<Deal[]>{
-    return this.http.get<Deal[]>('https://localhost:5001/deal', this.httpOptions)
+    return this.http.get<Deal[]>(this.apiURL, this.httpOptions)
   }
 
   getDealByID(dealID: Guid) : Observable<Deal>{
-    return this.http.get<Deal>('https://localhost:5001/deal/'+dealID.toString(), this.httpOptions)
+    return this.http.get<Deal>(this.apiURL+dealID.toString(), this.httpOptions)
   }
 
   postDeal(createDeal: Createmodel) : Observable<Deal>{
     console.log(createDeal)
-    return this.http.post<Deal>('https://localhost:5001/deal/', JSON.stringify(createDeal), this.httpOptions)
+    return this.http.post<Deal>(this.apiURL, JSON.stringify(createDeal), this.httpOptions)
   }
 
   postMail(emailModel: EmailModel) : Observable<boolean>{
-    return this.http.post<boolean>('https://localhost:51800/deal/claimdeal/', JSON.stringify(emailModel), this.httpOptions)
+    return this.http.post<boolean>(this.apiURL, JSON.stringify(emailModel), this.httpOptions)
   }
 
   getAllCategories() : Observable<Category[]>{
-    return this.http.get<Category[]>('https://localhost:5001/dealCategory', this.httpOptions)
+    return this.http.get<Category[]>(this.apiURL, this.httpOptions)
   }
 }
