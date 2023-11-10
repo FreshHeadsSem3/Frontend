@@ -29,6 +29,7 @@ export class InfoDealsComponent {
           //return to component (App.component.ts)
         } else {
           this.deal = result;
+          console.log(this.deal)
         }
       })
     });

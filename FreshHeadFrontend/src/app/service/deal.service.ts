@@ -22,7 +22,7 @@ export class DealService {
   }
 
   getDealByID(dealID: Guid) : Observable<Deal>{
-    return this.http.get<Deal>(this.apiURL+dealID.toString(), this.httpOptions)
+    return this.http.get<Deal>(this.apiURL+"/"+dealID.toString(), this.httpOptions)
   }
 
   postDeal(createDeal: Createmodel) : Observable<Deal>{
@@ -31,10 +31,10 @@ export class DealService {
   }
 
   postMail(emailModel: EmailModel) : Observable<boolean>{
-    return this.http.post<boolean>(this.apiURL, JSON.stringify(emailModel), this.httpOptions)
+    return this.http.post<boolean>(this.apiURL+"/ClaimDeal", JSON.stringify(emailModel), this.httpOptions)
   }
 
   getAllCategories() : Observable<Category[]>{
-    return this.http.get<Category[]>(this.apiURL, this.httpOptions)
+    return this.http.get<Category[]>(this.apiURL+"Category", this.httpOptions)
   }
 }

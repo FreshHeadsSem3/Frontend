@@ -18,9 +18,12 @@ import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 import { ModalComponent } from './modals/modal/modal.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CreateCompanyComponent } from './company/create-company/create-company.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -40,11 +43,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DateTimePickerModule,
     NgbModule,
     FormsModule,
-    BsDatepickerModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

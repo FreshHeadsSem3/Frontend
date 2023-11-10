@@ -36,59 +36,49 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
-                    <label for="categories">Select Categories</label>
-                    <ng-multiselect-dropdown
-                    [settings]="categoryDropdownSettings"
-      [data]="selectedCategories"
-      [(ngModel)]="selectedItems"
-      (onSelect)="onItemSelect($event)"
-      (onSelectAll)="onSelectAll($event)"
-    >
-                    </ng-multiselect-dropdown>
+                    <h3 class="h6">Categorie</h3>
+                    <select class="form-select" [(ngModel)]="selectedCategorie">
+                      <option *ngFor="let catagory of this.categories" [ngValue]="catagory.dealCategoryID">{{catagory.name}}</option>
+                    </select>
                 </div>
               </div>
-
             </div>
           </div>
-          <!-- Address -->
-
-
-          <!-- Status -->
-          <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="h6">Aantal</h3>
-              <select class="form-select">
-                <option value="draft" selected=""></option>
-                <option value="active">1</option>
-                <option value="active">2</option>
-              </select>
-            </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6">Aantal</h3>
+            <input type="number" pattern="[0-9]*" [(ngModel)]="MaxParticipants" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           </div>
+        </div>
 
-          <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="h6">Bedrijf</h3>
-              <select class="form-select" [(ngModel)]="companyID">
-                <option value="draft" selected=""></option>
-                <option value="active" *ngFor="let company of this.companies" [ngValue]="company.id">{{company.title}}</option>
-              </select>
-            </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6">Bedrijf</h3>
+            <select class="form-select" [(ngModel)]="companyID">
+              <option *ngFor="let company of this.companies" [ngValue]="company.id">{{company.title}}</option>
+            </select>
+            <h3 class="h6">Locatie</h3>
+            <input type="text" [(ngModel)]="location">
           </div>
-          <div card="card-body">
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
             <h3 class="h6 mb-4">Tot wanneer geldt de Deal</h3>
-            <div class="form-group">
-              <ejs-datetimepicker
-              [(ngModel)]="selectedDate"></ejs-datetimepicker>
-            </div>
+            <mat-form-field>
+              <input [(ngModel)]="selectedDate" matInput [matDatepicker]="dp">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
           </div>
+        </div>
           <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="h6">Foto</h3>
-              <input type="text" class="form-control" [(ngModel)]="image">
-            </div>
+          <div class="card-body">
+            <h3 class="h6">Foto</h3>
+            <input type="text" class="form-control" [(ngModel)]="image">
           </div>
         </div>
       </div>
     </div>
-
-      </div>
+  </div>
+</div>

@@ -7,9 +7,12 @@ import {Createmodel} from "../../model/deal/createmodel";
 import {ToastrService} from "ngx-toastr";
 import { Company } from 'src/app/model/company/company';
 import { CompanyService } from 'src/app/service/company.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import {Category} from "../../model/deal/category";
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule, MatDatepickerIntl} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-create-deal',
@@ -17,19 +20,25 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./create-deal.component.css'],
 })
 
-export class CreateDealComponent implements OnInit{
-  public selectedCategories: Category[] = [];
+export class CreateDealComponent{
+  public categories: Category[] = [];
+  public selectedCategorie!: Guid;
   categoryDropdownSettings = {};
   selectedItems = [];
+  public location: string = ""
+  public MaxParticipants: number = 0
 
-  selectedDate: NgbDate | null = null;
+  selectedDate: Date = new Date();
   title: string = '';
   description: string = '';
   image: string = '';
   companies!: Company[];
   companyID!: Guid;
 
-  constructor(private dealService: DealService, private router: Router, private companyService: CompanyService, private toastr: ToastrService) {
+  constructor(private dealService: DealService, private router: Router, private companyService: CompanyService, private adapter: DateAdapter<any>, private toastr: ToastrService) {
+
+    this.adapter.setLocale('fr')
+
     companyService.getCompanies()
       .subscribe(result => {
         if (result == null){
@@ -38,67 +47,33 @@ export class CreateDealComponent implements OnInit{
           this.companies = result;
         }
       })
-  
-    this.selectedCategories = [];
 
     this.dealService.getAllCategories().subscribe(element => {
       if (element == null){
         console.error('Error getting categories:');
       } else {
-        this.selectedCategories = element
+        this.categories = element
       }
     });
   }
 
-  ngOnInit() {
-    this.dealService.getAllCategories().subscribe((categories) => {
-      this.selectedCategories = categories.map((category) => ({
-        id: category.id,
-        name: category.name,
-      }));
-      this.selectedItems = [];
-      this.categoryDropdownSettings = { 
-        singleSelection: false, 
-        idField: 'id',
-        textField: 'name',
-        selectAllText:'Select All',
-        unSelectAllText:'UnSelect All',
-        allowSearchFilter: true,
-        itemsShowLimit: 3
-      };       
-    });
-
-  }
-
   onItemSelect(item:any){
     console.log(item);
-}
-onSelectAll(items: any){
-    console.log(items);
-}
-
-  convertToDate(ngbDate: NgbDate | null): Date | null {
-    if (ngbDate === null) {
-      return null;
-    }
-    return new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
-  };
-  
+  }
+  onSelectAll(items: any){
+      console.log(items);
+  }
 
   onSubmit() {
-
-    console.log('Formulier ingediend');
-    console.log('Titel:', this.title);
-    console.log('Beschrijving:', this.description);
-    console.log('Foto:', this.image);
-    console.log('Geselecteerde categorieën:', this.selectedItems);
-    console.log('Geselecteerde datum:', this.selectedDate);
-
-  
     if (!this.isValid()) {
       this.toastr.error("Er is een fout met een van de velden", "Error")
     }
-    let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, [this.image])
+    let today = new Date()
+    if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
+      this.selectedDate = new Date(1999,1,1)
+    }
+    let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, this.location, [this.image], this.MaxParticipants, this.selectedDate, this.selectedCategorie)
+    console.log(deal)
     this.dealService.postDeal(deal).subscribe(result =>{
       if(result == null){
         this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
@@ -111,7 +86,6 @@ onSelectAll(items: any){
 
 
   isValid(): boolean {
-
     return true;
   }
 
