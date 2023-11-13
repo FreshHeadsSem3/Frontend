@@ -35,6 +35,6 @@ export class DealService {
   }
 
   getAllCategories() : Observable<Category[]>{
-    return this.http.get<Category[]>(this.apiURL+"Category", this.httpOptions)
+    return this.http.get<Category[]>(this.apiURL+'Category', this.httpOptions)
   }
 }
