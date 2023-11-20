@@ -22,6 +22,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
+import { CompanyLoginComponent } from './company-login/company-login.component';
 import { CompaniesComponent } from './company/companies/companies.component';
 import { CancelDealComponent } from './deal/cancel-deal/cancel-deal.component';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
@@ -38,6 +39,7 @@ import { JwtInterceptorService } from './service/jwt-interceptor.service';
     CreateCompanyComponent,
     CompaniesComponent,
     CancelDealComponent,
+    CompanyLoginComponent,
   ],
   imports: [
     BrowserModule,
