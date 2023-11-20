@@ -21,6 +21,10 @@ export class DealService {
     return this.http.get<Deal[]>(this.apiURL, this.httpOptions)
   }
 
+  getAllDealsByCatagory(catagory: string) : Observable<Deal[]>{
+    return this.http.get<Deal[]>(this.apiURL+"/deals/category/"+catagory, this.httpOptions)
+  }
+
   getDealByID(dealID: Guid) : Observable<Deal>{
     return this.http.get<Deal>(this.apiURL+"/"+dealID.toString(), this.httpOptions)
   }

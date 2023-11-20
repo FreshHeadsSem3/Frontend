@@ -1,14 +1,21 @@
 <div class="deal_container">
   <img class="deal_image" src="{{this.deal.images[0]}}">
+  <div class="dealinfocontainer">
+    <div class="DIC_eventDatum" [style]="{'color': HasDatePassed(this.deal.eventDate) ? 'black' : 'red'}" *ngIf="MustDateBeShown(this.deal.eventDate)">Datum van event: {{this.deal.eventDate | date:'dd-MM-yyyy'}}</div>
+    <div class="DIC_datum" [style]="{'color': HasDatePassed(this.deal.activeTill) ? 'black' : 'red'}" *ngIf="MustDateBeShown(this.deal.activeTill)">Eind datum deal: {{this.deal.activeTill | date:'dd-MM-yyyy'}}</div>
+    <div class="DIC-participantcount" [style]="{'color': this.deal.maxParticipents - this.deal.claimed == 0 ? 'red' : 'black'}" *ngIf="this.deal.maxParticipents != 0">Coupons: {{this.deal.maxParticipents - this.deal.claimed}} over</div>
+  </div>
   <div class="title_container">
     <h1 class="title">{{ this.deal.title}} </h1>
   </div>
   <p class="description">{{ this.deal.description}} </p>
   <button class="corner_button" (click)="modalService.open('modal-1')">Ik doe mee!</button>
 
+  <div class="location_div" *ngIf="this.deal.location.length > 4">Locatie: {{this.deal.location}}</div>
+
   <jw-modal id="modal-1">
     <h1>{{this.deal.title}}</h1>
-    <p>Meld je aan voor deze Deal!<br> Hiervoor hebben wij alleen jouw E-mail address nodig.</p>
+    <p>Meld je aan voor deze deal!<br> Hiervoor hebben wij alleen jouw E-mail adres nodig.</p>
     <input type="text" placeholder="E-mail address" [(ngModel)]="UserEmail"/><br><br>
     <button class="mail-button" (click)="SendEmail()" [disabled]="disableSendButton">Deal verzenden</button>
     <button class="exit-button" (click)="modalService.close();">Close</button>

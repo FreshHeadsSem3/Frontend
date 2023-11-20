@@ -1,18 +1,27 @@
 <div style="display: flex">
-  <div class="filterMenu">
+  <div class="filterMenu" style="display: flex; justify-content: center;">
+    <div class="col-lg-6" style="width: 75%; margin-top: 15px;">
+      <div class="mb-3">
+        <label class="form-label">Categorie</label>
+        <select class="form-select" [(ngModel)]="this.SelectedCategory">
+          <option *ngFor="let catagory of this.Categories" [ngValue]="catagory.name">{{catagory.name}}</option>
+        </select>
+        <button (click)="FilterByCatagory()" class="btn btn-primary" style="margin-top: 10px;">Filter</button>
+      </div>
+    </div>
   </div>
   <div class="cardContainer">
     <div class="dealCard" *ngFor="let n of AllDeals" (click)="navigateInfoDeal(n.id)">
       <div class="dealCardImage" #imageDiv>
         <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
       </div>
-      <div class="dealCardText" [style.maxWidth.px]="imageDiv.clientWidth-40">
+      <div class="dealCardText">
         <h1>{{ n.title }}</h1>
         <p class="textcontainer">{{ n.description }}</p>
       </div>
       <div class="dealCardExpire">
-        <p class="dealCardExpireDate" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
-        <p class="dealCardExpireParticipants" *ngIf="n.maxParticipents > 0">{{n.maxParticipents - n.claimed}} over</p>
+        <p class="dealCardExpireDate" [style]="{'color': HasDatePassed(n.activeTill) ? 'black' : 'red'}" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
+        <p class="dealCardExpireParticipants" [style]="{'color': n.maxParticipents - n.claimed == 0 ? 'red' : 'black'}" *ngIf="n.maxParticipents > 0">{{n.maxParticipents - n.claimed}} over</p>
       </div>
     </div>
   </div>

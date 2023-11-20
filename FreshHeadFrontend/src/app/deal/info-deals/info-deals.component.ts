@@ -38,7 +38,7 @@ export class InfoDealsComponent {
   public SendEmail(){
     if(this.UserEmail.length > 1) {
       this.disableSendButton = true
-      this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail, "Dit is een test")).subscribe(
+      this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail, "Bedankt voor het claimen van de deal")).subscribe(
         result => {
           if (result == null || result == false) {
             this.toastr.error("Mail is niet verzonden", "Error")
@@ -51,5 +51,13 @@ export class InfoDealsComponent {
         }
       )
     }
+  }
+
+  public MustDateBeShown(date: Date) : Boolean {
+    return new Date(date) > new Date("2001-01-01");
+  }
+
+  public HasDatePassed(date : Date) : Boolean {
+    return new Date(date) > new Date()
   }
 }

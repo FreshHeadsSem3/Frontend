@@ -30,17 +30,17 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
-                    <label class="form-label">Beschrijving</label>
-                    <input type="text" class="form-control" [(ngModel)]="description">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="mb-3">
-                    <h3 class="h6">Categorie</h3>
+                    <label class="form-label">Categorie</label>
                     <select class="form-select" [(ngModel)]="selectedCategorie">
                       <option *ngFor="let catagory of this.categories" [ngValue]="catagory.dealCategoryID">{{catagory.name}}</option>
                     </select>
-                </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">Beschrijving</label>
+                <textarea type="text" class="form-control" style="width: 200%; height: 125px" [(ngModel)]="description"></textarea>
               </div>
             </div>
           </div>
@@ -48,7 +48,7 @@
         <div class="card mb-4">
           <div class="card-body">
             <h3 class="h6">Aantal</h3>
-            <input type="number" pattern="[0-9]*" [(ngModel)]="MaxParticipants" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            <input type="number" class="form-control" style="width: 25%" pattern="[0-9]*" [(ngModel)]="MaxParticipants" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
           </div>
         </div>
 
@@ -59,12 +59,12 @@
               <option *ngFor="let company of this.companies" [ngValue]="company.id">{{company.title}}</option>
             </select>
             <h3 class="h6">Locatie</h3>
-            <input type="text" [(ngModel)]="location">
+            <input type="text" class="form-control" [(ngModel)]="location">
           </div>
         </div>
         <div class="card mb-4">
           <div class="card-body">
-            <h3 class="h6 mb-4">Tot wanneer geldt de Deal</h3>
+            <h3 class="h6 mb-4">Tot wanneer geldt de deal</h3>
             <mat-form-field>
               <input [(ngModel)]="selectedDate" matInput [matDatepicker]="dp">
               <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
