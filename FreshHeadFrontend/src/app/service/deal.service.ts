@@ -6,6 +6,7 @@ import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
 import {EmailModel} from "../model/email-model";
+import {RemoveParticipant} from "../model/remove-participant";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class DealService {
 
   postMail(emailModel: EmailModel) : Observable<boolean>{
     return this.http.post<boolean>(this.apiURL+"/ClaimDeal", JSON.stringify(emailModel), this.httpOptions)
+  }
+
+  RemoveParticipant(removeModel : RemoveParticipant) : Observable<boolean> {
+    return this.http.post<boolean>(this.apiURL+"/CancelDeal", JSON.stringify(removeModel), this.httpOptions)
   }
 
   getAllCategories() : Observable<Category[]>{

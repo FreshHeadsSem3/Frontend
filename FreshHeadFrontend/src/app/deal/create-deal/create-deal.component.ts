@@ -37,7 +37,7 @@ export class CreateDealComponent{
 
   constructor(private dealService: DealService, private router: Router, private companyService: CompanyService, private adapter: DateAdapter<any>, private toastr: ToastrService) {
 
-    this.adapter.setLocale('fr')
+    this.adapter.setLocale('nl')
 
     companyService.getCompanies()
       .subscribe(result => {

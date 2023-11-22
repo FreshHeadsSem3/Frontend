@@ -1,6 +1,6 @@
 .dealCard {
   overflow: hidden;
-  max-height: 47vh;
+  height: 47vh;
   max-width: 49%;
   width: fit-content;
   min-width: 15vw;

@@ -38,7 +38,9 @@ export class InfoDealsComponent {
   public SendEmail(){
     if(this.UserEmail.length > 1) {
       this.disableSendButton = true
-      this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail, "Bedankt voor het claimen van de deal")).subscribe(
+      this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail,
+        "Bedankt voor het claimen van de deal "+"http://localhost:4200/cancel?dealid=%22"+this.DealID+"%22&email=%22"+this.UserEmail+"%22"
+      )).subscribe(
         result => {
           if (result == null || result == false) {
             this.toastr.error("Mail is niet verzonden", "Error")
