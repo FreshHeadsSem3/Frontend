@@ -8,7 +8,7 @@ COPY ./FreshHeadFrontend/package*.json ./
 
 RUN npm ci
 
-COPY ./FreshHeadFrontend .
+COPY . .
 
 RUN npm run build
 
