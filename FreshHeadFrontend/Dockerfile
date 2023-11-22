@@ -4,7 +4,7 @@ FROM node:latest as build
 #set working directory
 WORKDIR /app
 
-COPY ./package*.json ./
+COPY ./package*.json ./package-lock.json ./
 
 RUN npm ci
 
