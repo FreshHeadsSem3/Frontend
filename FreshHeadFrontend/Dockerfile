@@ -4,7 +4,7 @@ FROM node:latest as build
 #set working directory
 WORKDIR /app
 
-COPY ./FreshHeadFrontend/package*.json ./
+COPY ./package*.json ./
 
 RUN npm ci
 
