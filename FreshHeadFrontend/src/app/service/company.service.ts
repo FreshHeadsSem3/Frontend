@@ -15,12 +15,16 @@ export class CompanyService {
   }
   constructor(private http: HttpClient) {}
 
+  getAllCompanies() : Observable<Company[]>{
+    return this.http.get<Company[]>('https://localhost:51800/company/', this.httpOptions)
+  }
+
   getCompanyByID(companyID: Guid) : Observable<Company>{
     return this.http.get<Company>('https://localhost:51800/company/'+companyID.toString(), this.httpOptions)
   }
 
   getCompanies() : Observable<Company[]>{
-    return this.http.get<Company[]>('https://localhost:51800/company/', this.httpOptions)
+    return this.http.get<Company[]>('https://localhost:51800/company/dealCategory', this.httpOptions)
   }
 
   postCompany(createCompany: Createmodel) : Observable<Company>{

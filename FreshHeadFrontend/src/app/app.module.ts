@@ -22,7 +22,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
-
+import { CompaniesComponent } from './company/companies/companies.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import {MatInputModule} from "@angular/material/input";
     CreateDealComponent,
     ModalComponent,
     CreateCompanyComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,

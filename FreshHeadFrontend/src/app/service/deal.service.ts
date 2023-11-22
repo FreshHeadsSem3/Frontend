@@ -6,6 +6,7 @@ import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
 import {EmailModel} from "../model/email-model";
+import { Company } from '../model/company/company';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class DealService {
 
   getDealByID(dealID: Guid) : Observable<Deal>{
     return this.http.get<Deal>(this.apiURL+"/"+dealID.toString(), this.httpOptions)
+  }
+
+  getDealByCompanyID(companyID: Guid) : Observable<Deal[]>{
+    return this.http.get<Deal[]>(this.apiURL+"/company/"+companyID.toString(), this.httpOptions)
   }
 
   postDeal(createDeal: Createmodel) : Observable<Deal>{
