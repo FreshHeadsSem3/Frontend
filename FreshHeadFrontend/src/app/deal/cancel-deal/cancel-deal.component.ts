@@ -32,11 +32,13 @@ export class CancelDealComponent {
           } else {
             this.Deal = result
           }
-          if(this.Deal == null){
-            this._router.navigate([''])
-          }
+        }, error => {
+          this.toastr.error("Deal is niet gevonden")
+          this._router.navigate([''])
         }
       )
+    } else {
+      this._router.navigate([''])
     }
   }
 
