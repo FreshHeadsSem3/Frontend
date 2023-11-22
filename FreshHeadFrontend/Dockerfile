@@ -4,11 +4,11 @@ FROM node:latest as build
 #set working directory
 WORKDIR /app
 
-COPY ./package*.json ./package-lock.json ./
+COPY ./FreshHeadFrontend/package*.json ./FreshHeadFrontend/package-lock.json ./
 
 RUN npm ci
 
-COPY . .
+COPY .FreshHeadFrontend/ .
 
 RUN npm run build
 
