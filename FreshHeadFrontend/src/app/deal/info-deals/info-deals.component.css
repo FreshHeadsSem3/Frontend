@@ -1,0 +1,89 @@
+.deal_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.title_container {width: 50vw}
+
+.title {
+  font-family: Proxima;
+  font-size: 45px;
+  line-height: 50px;
+  color: #262b30;
+}
+
+.deal_image{
+  max-width: 50vw;
+  margin-top: 3vh;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px #0000005c;
+}
+
+.description{
+  width: 50vw;
+  font-family: Neutrif;
+  margin: 0;
+  font-size: 20px;
+  line-height: 36px;
+  color: #262b30;
+}
+
+.corner_button{
+  position: fixed;
+  padding: 10px;
+  bottom: 5vh;
+  right: 5vh;
+  border-radius: 50px;
+  background-color: white;
+  border-color: #00a6fb;
+  border-width: 3px;
+  box-shadow: 3px 3px 5px #0000005c;
+  font-family: Neutrif;
+  font-size: larger;
+  color: #262b30;
+}
+
+.mail-button{
+  width: fit-content;
+  border-radius: 50px;
+  background-color: white;
+  border-color: #00a6fb;
+  border-width: 2px;
+  box-shadow: 3px 3px 5px #0000005c;
+  font-family: Neutrif;
+  color: #262b30;
+  padding: 10px
+}
+
+.exit-button {
+  float: right;
+  width: fit-content;
+  height: 7%;
+  border-radius: 50px;
+  background-color: white;
+  border-color: #00a6fb;
+  border-width: 2px;
+  box-shadow: 3px 3px 5px #0000005c;
+  font-family: Neutrif;
+  color: #262b30;
+  padding: 10px
+}
+
+.mail-button[disabled]{
+  border-color: #767676;
+}
+
+.dealinfocontainer{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50vw;
+}
+
+.location_div{
+  width: 50vw;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

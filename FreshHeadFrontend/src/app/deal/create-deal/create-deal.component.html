@@ -1,0 +1,84 @@
+
+<div class="container-fluid">
+
+    <div class="container">
+      <!-- Title -->
+      <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+        <h2 class="h5 mb-3 mb-lg-0">Voeg een nieuwe deal toe</h2>
+        <div class="btn-group">
+            <form (ngSubmit)="onSubmit()">
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Annuleren</button>
+            </form>
+          </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="row">
+        <!-- Left side -->
+        <div class="col-lg-8">
+          <!-- Basic information -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6 mb-4">Deal informatie</h3>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Titel</label>
+                    <input type="text" class="form-control" [(ngModel)]="title">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label">Categorie</label>
+                    <select class="form-select" [(ngModel)]="selectedCategorie">
+                      <option *ngFor="let catagory of this.categories" [ngValue]="catagory.dealCategoryID">{{catagory.name}}</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">Beschrijving</label>
+                <textarea type="text" class="form-control" style="width: 200%; height: 125px" [(ngModel)]="description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6">Aantal</h3>
+            <input type="number" class="form-control" style="width: 25%" pattern="[0-9]*" [(ngModel)]="MaxParticipants" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6">Bedrijf</h3>
+            <select class="form-select" [(ngModel)]="companyID">
+              <option *ngFor="let company of this.companies" [ngValue]="company.id">{{company.title}}</option>
+            </select>
+            <h3 class="h6">Locatie</h3>
+            <input type="text" class="form-control" [(ngModel)]="location">
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6 mb-4">Tot wanneer geldt de deal</h3>
+            <mat-form-field>
+              <input [(ngModel)]="selectedDate" matInput [matDatepicker]="dp">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+          <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6">Foto</h3>
+            <input type="text" class="form-control" [(ngModel)]="image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

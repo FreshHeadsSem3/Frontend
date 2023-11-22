@@ -1,1 +1,17 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Neutrif";
+  src: url('../fonts/NeutrifStudio-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/Proxima Nova Extrabold.ttf');
+}
+
+ngb-datepicker {
+  display: block;
+}
