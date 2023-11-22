@@ -8,7 +8,7 @@ COPY ./FreshHeadFrontend/package*.json ./FreshHeadFrontend/package-lock.json ./
 
 RUN npm ci
 
-COPY .FreshHeadFrontend/ .
+COPY ./FreshHeadFrontend/ .
 
 RUN npm run build
 
