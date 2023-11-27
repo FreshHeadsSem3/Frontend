@@ -74,11 +74,11 @@ export class InfoDealsComponent {
 
   public GetMailMassage() : string{
     return `
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>EduDeals</title>
       <style type="text/css">
@@ -102,7 +102,7 @@ export class InfoDealsComponent {
           padding-bottom: 60px;
         }
         .main {
-          background-color: #ffffff;
+          background-color: #020522;
           margin: 0 auto;
           width: 100%;
           max-width: 600px;
@@ -116,7 +116,7 @@ export class InfoDealsComponent {
         }
         .two-columns .column {
           width: 100%;
-          max-width: 300px;
+          max-width: 290px;
           display: inline-block;
           vertical-align: top;
         }
@@ -154,25 +154,25 @@ export class InfoDealsComponent {
         }
       </style>
       </head>
-      <body>
+      <body style="margin: 0; background-color: #cccccc;">
 
-      <center class="wrapper">
-        <table class="main" width="100%">
+      <center class="wrapper" style="width: 100%; table-layout: fixed; background-color: #cccccc; padding-bottom: 60px;">
+        <table class="main" width="100%" style="background-color: #020522; margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; font-family: sans-serif; color: #171a1b;" bgcolor="#020522">
           <!-- TOP BORDER -->
           <tr>
-            <td height="8" style="background-color: #020522;"></td>
+            <td height="8" bgcolor="#020522" style="padding: 0; background-color: #020522;"></td>
           </tr>
 
           <!-- LOGO SECTION -->
           <tr>
-            <td>
-              <table width="100%">
+            <td style="padding: 0;">
+              <table width="100%" style="border-spacing: 0;">
                 <tr>
-                  <td class="two-columns" style="background-color: #020522;">
-                    <table class="column" style="display: unset;">
-                      <tr>
-                        <td>
-                          <a href="http://localhost:4200" style="font-size: 50px;">EduDeals</a>
+                  <td class="two-columns" bgcolor="#020522" style="padding: 0; text-align: center; font-size: 0; background-color: #020522;" align="center">
+                    <table class="column" style="border-spacing: 0; width: 100%; max-width: 300px; vertical-align: top; display: unset;" width="100%" valign="top">
+                      <tr style="display: unset;">
+                        <td style="padding: 0; display: unset; text-align: center;" width="100%" align="center">
+                          <a href="http://localhost:4200" style="text-decoration: none; color: #EDEEFF; font-weight: bold; font-size: 50px;">EduDeals</a>
                         </td>
                       </tr>
                     </table>
@@ -184,24 +184,24 @@ export class InfoDealsComponent {
 
           <!-- BANNER IMAGE -->
           <tr>
-            <td>
-              <a href="#"><img src="" width="600" style="max-width: 100%;"></a>
+            <td style="padding: 0;">
+              <a href="#" style="text-decoration: none; color: #EDEEFF; font-weight: bold;"><img src="" width="600" style="border: 0; max-width: 100%; display: inline-block;"></a>
             </td>
           </tr>
 
           <!-- TWO COLUMN SECTION -->
           <tr>
-            <td style="background-color: #26292b;color: #ffffff;">
-              <table width="100%">
+            <td bgcolor="#26292b" style="padding: 0; background-color: #26292b; color: #ffffff;">
+              <table width="100%" style="border-spacing: 0;">
                 <tr>
-                  <td class="two-columns last">
-                    <table class="column">
+                  <td class="two-columns last" style="text-align: center; font-size: 0; padding: 15px 0;" align="center">
+                    <table class="column" style="border-spacing: 0; width: 100%; max-width: 290px; display: inline-block; vertical-align: top;" width="100%" valign="top">
                       <tr>
-                        <td class="padding">
-                          <table class="content">
+                        <td class="padding" style="padding: 20px;">
+                          <table class="content" style="border-spacing: 0; font-size: 15px; line-height: 20px; text-align: left;" align="left">
                             <tr>
-                              <td>
-                                <a href="http://localhost:4200/deal?data=%22${this.deal.id.toString()}%22"><img src="${this.deal.images[0]}" alt="" width="260" style="max-width: 260px"></a>
+                              <td style="padding: 0;">
+                                <a href="http://localhost:4200/deal?data=%22${this.deal.id.toString()}%22" style="text-decoration: none; color: #EDEEFF; font-weight: bold; padding: 0"><img src="${this.deal.images[0]}" alt="" width="260" style="border: 0; padding: 0; max-width: 260px; display: inline-block;"></a>
                               </td>
                             </tr>
                           </table>
@@ -209,14 +209,14 @@ export class InfoDealsComponent {
                       </tr>
                     </table>
 
-                    <table class="column">
+                    <table class="column" style="border-spacing: 0; width: 100%; max-width: 290px; display: inline-block; vertical-align: top;" width="100%" valign="top">
                       <tr>
-                        <td class="padding">
-                          <table class="content">
+                        <td class="padding" style="padding: 20px;">
+                          <table class="content" style="border-spacing: 0; font-size: 15px; line-height: 20px; text-align: left;" align="left">
                             <tr>
-                              <td>
-                                <p style="font-weight: bold; font-size: 18px;">${this.deal.description.slice(0,150)}...</p>
-                                <a href="http://localhost:4200/cancel?dealid=%22${this.DealID}%22&email=%22${this.UserEmail}%22" class="button">Afmelden</a>
+                              <td style="padding: 0;">
+                                <p style="font-weight: bold; font-size: 18px;">${this.deal.description.slice(0,250)}...</p>
+                                <a href="http://localhost:4200/cancel?dealid=%22${this.DealID}%22&email=%22${this.UserEmail}%22" class="button" style="background-color: #ffffff; color: #171a1b; text-decoration: none; padding: 12px 20px; border-radius: 5px; font-weight: bold;">Afmelden</a>
                               </td>
                             </tr>
                           </table>
@@ -230,14 +230,14 @@ export class InfoDealsComponent {
           </tr>
 
           <!-- TITLE, TEXT & BUTTON -->
-          <tr>
+          <tr bgcolor="#ffffff" style="background-color: white;">
             <td style="padding: 15px 0 50px;">
-              <table width="100%">
+              <table width="100%" style="border-spacing: 0;">
                 <tr>
-                  <td style="text-align: center; padding: 16px;">
+                  <td style="text-align: center; padding: 16px;" align="center">
                     <p style="font-size: 20px; font-weight: bold;">${this.company.title}</p>
-                    <p style="line-height: 23px; font-size: 15px; padding: 5px 0 15px;">${this.company.description.slice(0,150)}...</p>
-                    <a href="http://localhost:4200/company?data=%22${this.company.id}%22" class="button-dark">View company</a>
+                    <p style="line-height: 23px; font-size: 15px; padding: 5px 0 15px;">${this.company.description.slice(0,250)}...</p>
+                    <a href="http://localhost:4200/company?data=%22${this.company.id}%22" class="button-dark" style="background-color: #171a1b; color: #ffffff; text-decoration: none; padding: 12px 20px; border-radius: 5px; font-weight: bold;">Bekijk bedrijf</a>
                   </td>
                 </tr>
               </table>
@@ -246,11 +246,11 @@ export class InfoDealsComponent {
 
           <!-- FOOTER SECTION -->
           <tr>
-            <td style="background-color: #26292b">
-              <table width="100%">
+            <td bgcolor="#26292b" style="padding: 0; background-color: #26292b;">
+              <table width="100%" style="border-spacing: 0;">
                 <tr>
-                  <td style="text-align: center; padding: 45px 20px; color: #ffffff;">
-                    <a href="http://localhost:4200" style="font-size: 25px;">EduDeals</a>
+                  <td style="text-align: center; padding: 45px 20px; color: #ffffff;" align="center">
+                    <a href="http://localhost:4200" style="text-decoration: none; color: #EDEEFF; font-weight: bold; font-size: 25px;">EduDeals</a>
                   </td>
                 </tr>
               </table>
