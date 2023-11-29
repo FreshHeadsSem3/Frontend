@@ -78,7 +78,7 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           file: ./FreshHeadFrontend/Dockerfile
-          tags: ${{ secrets.imagetag }}/frontend
+          tags: ${{ secrets.imagetag }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -91,7 +91,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          TAGS: ${{ secrets.imagetags }}/frontend
+          TAGS: ${{ secrets.imagetags }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
