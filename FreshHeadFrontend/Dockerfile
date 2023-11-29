@@ -18,7 +18,7 @@ RUN npm run build
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist/FreshHeadFrontend /usr/share/nginx/html
+COPY --from=build /app/dist/fresh-head-frontend /usr/share/nginx/html
 
 # Expose port 80 and 443
 EXPOSE 80
