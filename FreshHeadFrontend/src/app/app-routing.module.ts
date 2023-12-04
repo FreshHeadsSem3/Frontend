@@ -6,6 +6,7 @@ import { CreateDealComponent } from './deal/create-deal/create-deal.component';
 import { DealsComponent } from "./deal/deals/deals.component";
 import { CreateCompanyComponent } from './company/create-company/create-company.component';
 import { CompaniesComponent } from './company/companies/companies.component';
+import {CancelDealComponent} from "./deal/cancel-deal/cancel-deal.component";
 
 const routes: Routes = [
   { path: '', component: DealsComponent, pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'deal', component: InfoDealsComponent},
   { path: 'create-company', component: CreateCompanyComponent},
   { path: 'companies', component: CompaniesComponent}
+  { path: 'cancel', component: CancelDealComponent}
 ];
 
 @NgModule({
