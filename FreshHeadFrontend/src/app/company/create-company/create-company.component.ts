@@ -4,6 +4,7 @@ import {CompanyService} from "../../service/company.service";
 import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/company/createmodel";
+import { DealsComponent } from 'src/app/deal/deals/deals.component';
 
 
 @Component({
@@ -56,8 +57,8 @@ export class CreateCompanyComponent {
   }
 
   cancel() {
-
     console.log('Formulier geannuleerd');
+    this.router.navigate([''])
   }
 
 }

@@ -90,7 +90,8 @@ export class CreateDealComponent{
   }
 
   cancel() {
-    this.toastr.info("Deal verwijderd", "Info")
+    this.toastr.info("Deal aanmaken geannulleerd", "Info")
+    this.router.navigate([''])
   }
 
 }
