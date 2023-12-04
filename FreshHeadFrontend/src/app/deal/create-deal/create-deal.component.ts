@@ -67,21 +67,22 @@ export class CreateDealComponent{
   onSubmit() {
     if (!this.isValid()) {
       this.toastr.error("Er is een fout met een van de velden", "Error")
-    }
-    let today = new Date()
-    if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
-      this.selectedDate = new Date(1999,1,1)
-    }
-    let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, this.location, [this.image], this.MaxParticipants, this.selectedDate, this.selectedCategorie)
-    console.log(deal)
-    this.dealService.postDeal(deal).subscribe(result =>{
-      if(result == null){
-        this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
-      } else {
-        this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
-        this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
+    } else {
+      let today = new Date()
+      if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
+        this.selectedDate = new Date(1999,1,1)
       }
-    })
+      let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, this.location, [this.image], this.MaxParticipants, this.selectedDate, this.selectedCategorie)
+      console.log(deal)
+      this.dealService.postDeal(deal).subscribe(result =>{
+        if(result == null){
+          this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
+        } else {
+          this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
+          this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
+        }
+      })
+    }
   }
 
 
