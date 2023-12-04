@@ -18,6 +18,10 @@ export class CreateCompanyComponent {
   description: string = '';
   kvk: number = NaN;
   image: string = '';
+  link1: string = '';
+  link2: string = '';
+  link3: string = '';
+  link4: string = '';
 
   constructor(private companyService: CompanyService, private router: Router) {
 
@@ -37,11 +41,12 @@ export class CreateCompanyComponent {
     console.log('Beschrijving:', this.description);
     console.log('Kvk:', this.kvk);
     console.log('Foto:', this.image);
+    console.log('link1', this.link1);
 
     if (!this.isValid()) {
       console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
     }
-    let company: Createmodel = new Createmodel(this.title, this.description, this.kvk, [this.image])
+    let company: Createmodel = new Createmodel(this.title, this.description, this.kvk, [this.image], this.link1, this.link2, this.link3, this.link4)
     this.companyService.postCompany(company).subscribe(result =>{
       if(result == null){
         console.log("company is empty")
