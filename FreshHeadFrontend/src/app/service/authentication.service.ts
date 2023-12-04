@@ -1,28 +1,42 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../model/token-response';
-import { Observable, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { tap, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Loginmodel } from '../model/company/loginmodel';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  constructor(private http: HttpClient) { }
-
-  private tokenKey = 'jwtToken';
+  private readonly tokenKey = 'jwtToken';
   private apiUrl = 'https://localhost:51800/login';
 
-  login(username: string, password: string): Observable<TokenResponse> {
-    // Implement your login logic and receive the token from the server
+  httpOptions = {
+    headers: new HttpHeaders().set('Content-Type', 'application/json')
+  }
+  
+  constructor(private http: HttpClient) { }
 
-    const credentials = { username, password };
-    return this.http.post<TokenResponse>(`${this.apiUrl}`, credentials).pipe(
+  
+
+  login(UserEmail: string, UserPassword: string): Observable<TokenResponse> {
+    console.log(UserEmail, UserPassword)
+    const credentials = { UserEmail, UserPassword };
+    console.log('Before HTTP Request');
+    // Implement your login logic and receive the token from the server
+    return this.http.post<TokenResponse>(this.apiUrl, credentials, this.httpOptions).pipe(
       tap((tokenResponse) => {
+        console.log(tokenResponse);
         if (tokenResponse) {
           this.setToken(tokenResponse.token);
         }
+      }),
+      catchError((error) => {
+        console.error('Backend error:', error);
+        // Forward the error to the calling code
+        return throwError(error);
       })
     );
   }

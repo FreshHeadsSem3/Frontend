@@ -1,12 +1,12 @@
 import { Guid } from 'guid-typescript';
 
 export class Loginmodel {
-    public Email: string;
-    public Password: string;
+    public UserEmail: string;
+    public UserPassword: string;
 
 
-    constructor(Email: string, Password: string) {
-        this.Email = Email;
-        this.Password = Password;
+    constructor(UserEmail: string, UserPassword: string) {
+        this.UserEmail = UserEmail;
+        this.UserPassword = UserPassword;
     }
 }

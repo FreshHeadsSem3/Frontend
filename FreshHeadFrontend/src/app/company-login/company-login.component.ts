@@ -4,6 +4,7 @@ import { Inject } from '@angular/core';
 import { Router } from "@angular/router";
 import { Guid } from "guid-typescript";
 import { Loginmodel } from "../model/company/loginmodel";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-company-login',
@@ -12,8 +13,8 @@ import { Loginmodel } from "../model/company/loginmodel";
 })
 export class CompanyLoginComponent {
   isLoggedIn = false;
-  Email: string = '';
-  Password: string = '';
+  UserEmail: string = '';
+  UserPassword: string = '';
 
 
 constructor(@Inject(AuthenticationService) private authService: AuthenticationService, private router: Router) {
@@ -21,21 +22,20 @@ constructor(@Inject(AuthenticationService) private authService: AuthenticationSe
 }
 
 isValid(): boolean {
-    console.log('Email:', this.Email);
-    console.log('Password:', this.Password);
-    return this.Email.trim() !== '' && this.Password.trim() !== '';
+    console.log('Email:', this.UserEmail);
+    console.log('Password:', this.UserPassword);
+    return this.UserEmail.trim() !== '' && this.UserPassword.trim() !== '';
 }
 
 onSubmit() {
+  console.log('onSubmit called');
     if (!this.isValid()) {
         console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
         return;
     }
+console.log('form ingevuld')
 
-    let loginData: Loginmodel = new Loginmodel(this.Email, this.Password);
-    console.log(loginData)
-
-    this.authService.login(loginData)
+    this.authService.login(this.UserEmail, this.UserPassword)
         .subscribe(
             (result: any) => {
                 if (result && result.token) {
@@ -54,12 +54,6 @@ onSubmit() {
                 console.error('Inloggen mislukt', error);
             }
         );
-}
-
-logout() {
-    this.authService.logout();
-    this.isLoggedIn = false;
-    this.Email = '';
 }
 
 }
