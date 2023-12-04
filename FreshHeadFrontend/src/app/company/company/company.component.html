@@ -1,7 +1,39 @@
-<div class="company_container">
-  <img class="company_image" src="{{this.Company.images[0]}}">
-  <div class="title_container">
-    <h1 class="title">{{ this.Company.title}} </h1>
+<div class="company">
+  <div class="companyInfo">
+    <div class="company_container">
+      <img class="company_image" src="{{this.Company.images[0]}}">
+      <div class="title_container">
+        <h1 class="title">{{ this.Company.title}} </h1>
+      </div>
+      <p class="description">{{ this.Company.description}} </p>
+    </div>
   </div>
-  <p class="description">{{ this.Company.description}} </p>
+
+  <div class="FlexContainer">
+    <div class="TitleContainer">
+      <p>Deals:</p>
+    </div>
+    <div class="companyDeals">
+      <div class="dealCard" *ngFor="let n of AllDeals" (click)="navigateInfoDeal(n.id)">
+        <div class="dealCardImage" #imageDiv>
+          <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
+        </div>
+        <div class="dealCardText" [style.maxWidth.px]="imageDiv.clientWidth-40">
+          <h1>{{ n.title }}</h1>
+          <p class="textcontainer">{{ n.description }}</p>
+        </div>
+        <div class="dealCardExpire">
+          <p class="dealCardExpireDate" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
+          <p class="dealCardExpireParticipants" *ngIf="n.maxParticipents > 0">{{n.maxParticipents - n.claimed}} over</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="companyLinks">
+  <p><a href="{{Company.link1}}" target="_blank">{{Company.link1}}</a></p>
+  <p><a href="{{Company.link2}}" target="_blank">{{Company.link2}}</a></p>
+  <p><a href="{{Company.link3}}" target="_blank">{{Company.link3}}</a></p>
+  <p><a href="{{Company.link4}}" target="_blank">{{Company.link4}}</a></p>
 </div>
