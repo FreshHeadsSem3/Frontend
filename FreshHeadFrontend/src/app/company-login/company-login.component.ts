@@ -35,12 +35,15 @@ onSubmit() {
     }
 console.log('form ingevuld')
 
-    this.authService.login(this.UserEmail, this.UserPassword)
+let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
+        console.log(loginData)
+
+    this.authService.login(loginData)
         .subscribe(
             (result: any) => {
-                if (result && result.token) {
+                if (result && result.companyResponse) {
                     // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
-                    this.authService.setToken(result.token);
+                    this.authService.setToken(result.companyResponse);
                     const ID = result.ID; // replace with the actual property name in the response
 
                 // Use the ID as needed

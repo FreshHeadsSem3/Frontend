@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../model/token-response';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Loginmodel } from '../model/company/loginmodel';
@@ -9,71 +9,53 @@ import { Loginmodel } from '../model/company/loginmodel';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthenticationService {
-  private readonly tokenKey = 'jwtToken';
-  private apiUrl = 'https://localhost:51800/login';
+  private readonly jwtTokenKey = 'jwtToken';
+  private apiUrl = 'https://localhost:51800/login/';
 
   httpOptions = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
-  }
-  
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.getToken()}`,
+    }),
+    responseType: 'text' as 'json',
+  };
+
   constructor(private http: HttpClient) { }
 
-  
-
-  login(UserEmail: string, UserPassword: string): Observable<TokenResponse> {
-    console.log(UserEmail, UserPassword)
-    const credentials = { UserEmail, UserPassword };
-    console.log('Before HTTP Request');
-    // Implement your login logic and receive the token from the server
-    return this.http.post<TokenResponse>(this.apiUrl, credentials, this.httpOptions).pipe(
-      tap((tokenResponse) => {
-        console.log(tokenResponse);
-        if (tokenResponse) {
-          this.setToken(tokenResponse.token);
+  login(loginData: Loginmodel) {
+    console.log(loginData)
+    return this.http.post<any>(`${this.apiUrl}`, loginData, this.httpOptions)
+      .pipe(map((companyResponse) => {
+        console.log('token response:', companyResponse);
+        // login successful if there's a jwt token in the response
+        if (typeof companyResponse === 'string') {
+          this.setToken(companyResponse);
+          console.log('Token stored in local storage:', companyResponse);
+        } else {
+          // Handle other types of responses if needed
+          console.error('Unexpected response type:', typeof companyResponse);
         }
+
+        return companyResponse;
+
       }),
-      catchError((error) => {
-        console.error('Backend error:', error);
-        // Forward the error to the calling code
-        return throwError(error);
-      })
-    );
+        catchError((error) => {
+          console.error('HTTP request error:', error);
+          return throwError('An error occurred during the login process.');
+        }));
   }
 
-  getToken(): any {
-   
-    return localStorage.getItem(this.tokenKey);
-
+  getToken(): string | null {
+    // Retrieve the token from local storage
+    return localStorage.getItem(this.jwtTokenKey);
   }
 
-  setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  setToken(companyResponse: string): void {
+    // Manually set the token in local storage
+    localStorage.setItem(this.jwtTokenKey, companyResponse);
   }
 
-  isTokenExpired(): boolean {
-    const token = this.getToken();
-    if (!token) {
-      return true; // Token is not present
-    }
-    const tokenData = JSON.parse(atob(token.split('.')[1]));
-    const expirationDate = new Date(tokenData.exp * 1000);
-    return expirationDate <= new Date();
-
-  }
-
-  refreshToken(): Observable<TokenResponse> {
-    const token = this.getToken();
-
-    return this.http.post<TokenResponse>(`${this.apiUrl}/refresh`, { token }).pipe(
-      tap((tokenResponse) => {
-        if (tokenResponse) {
-          this.setToken(tokenResponse.token);
-        }
-      }));
-
-
-    // Implement token refresh logic and make a request to the backend
-  }
 }
 
