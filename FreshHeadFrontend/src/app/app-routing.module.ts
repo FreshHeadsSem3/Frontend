@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'company', component: CompanyComponent},
   { path: 'deal', component: InfoDealsComponent},
   { path: 'create-company', component: CreateCompanyComponent},
-  { path: 'companies', component: CompaniesComponent}
-  { path: 'cancel', component: CancelDealComponent}
+  { path: 'companies', component: CompaniesComponent},
+  { path: 'cancel', component: CancelDealComponent},
 ];
 
 @NgModule({
