@@ -41,14 +41,16 @@ let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
     this.authService.login(loginData)
         .subscribe(
             (result: any) => {
+              console.log('Login result:', result);
                 if (result && result.companyResponse) {
+                  console.log('Token ontvangen. Ingelogd.');
                     // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
                     this.authService.setToken(result.companyResponse);
                     const ID = result.ID; // replace with the actual property name in the response
 
                 // Use the ID as needed
                 console.log('Company ID:', ID);
-                    this.router.navigate(['company']);
+                    this.router.navigate(['']);
                 } else {
                     console.log('Inloggen mislukt. Geen token ontvangen.');
                 }
