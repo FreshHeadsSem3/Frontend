@@ -38,7 +38,7 @@ console.log('form ingevuld')
 let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
         console.log(loginData)
 
-    this.authService.login(loginData.UserEmail, loginData.UserPassword)
+    this.authService.login(loginData)
         .subscribe(
             (result: any) => {
               console.log('Login result:', result);
