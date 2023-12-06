@@ -7,10 +7,12 @@ import { DealsComponent } from "./deal/deals/deals.component";
 import { CreateCompanyComponent } from './company/create-company/create-company.component';
 import { CompaniesComponent } from './company/companies/companies.component';
 import {CancelDealComponent} from "./deal/cancel-deal/cancel-deal.component";
+import { CompanyLoginComponent } from './company-login/company-login.component';
 
 const routes: Routes = [
   { path: '', component: DealsComponent, pathMatch: 'full'},
   { path: 'create-deal', component: CreateDealComponent},
+  {path: 'login', component: CompanyLoginComponent},
   { path: 'company', component: CompanyComponent},
   { path: 'deal', component: InfoDealsComponent},
   { path: 'create-company', component: CreateCompanyComponent},
