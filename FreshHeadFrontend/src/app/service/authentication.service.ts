@@ -27,13 +27,10 @@ export class AuthenticationService {
     console.log(loginData)
     return this.http.post<any>(`${this.apiUrl}`, loginData, this.httpOptions)
       .pipe(map((companyResponse) => {
-        console.log('token response:', companyResponse);
         // login successful if there's a jwt token in the response
         if (typeof companyResponse === 'string') {
           this.setToken(companyResponse);
-          console.log('Token stored in local storage:', companyResponse);
         } else {
-          // Handle other types of responses if needed
           console.error('Unexpected response type:', typeof companyResponse);
         }
 
@@ -44,13 +41,10 @@ export class AuthenticationService {
   }
 
   getToken(): any {
-
     return localStorage.getItem(this.tokenKey);
-
   }
 
   setToken(companyResponse: string): void {
-    // Manually set the token in local storage
     localStorage.setItem(this.tokenKey, companyResponse);
   }
 
