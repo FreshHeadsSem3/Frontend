@@ -4,7 +4,7 @@ export class Deal {
   public id: Guid;
   public title: string;
   public description: string;
-  public maxParticipents: number = 0
+  public maxParticipants: number = 0
   public claimed: number = 0
   public location: string = ""
   public activeTill: Date = new Date(2000, 1, 1)
@@ -15,11 +15,11 @@ export class Deal {
   public companyID: Guid;
 
 
-  constructor(id: Guid, title: string, description: string, maxParticipents: number, claimed: number, location: string, activeTill: Date, eventDate: Date, images: string[], dealCategory: string, dealCategoryID: Guid, companyID: Guid) {
+  constructor(id: Guid, title: string, description: string, maxParticipants: number, claimed: number, location: string, activeTill: Date, eventDate: Date, images: string[], dealCategory: string, dealCategoryID: Guid, companyID: Guid) {
     this.id = id;
     this.title = title;
     this.description = description;
-    this.maxParticipents = maxParticipents;
+    this.maxParticipants = maxParticipants;
     this.claimed = claimed;
     this.location = location;
     this.activeTill = activeTill;

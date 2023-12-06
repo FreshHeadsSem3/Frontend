@@ -24,12 +24,11 @@
         </div>
         <div class="dealCardExpire">
           <p class="dealCardExpireDate" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
-          <p class="dealCardExpireParticipants" *ngIf="n.maxParticipents > 0">{{n.maxParticipents - n.claimed}} over</p>
+          <p class="dealCardExpireParticipants" *ngIf="n.maxParticipants > 0">{{n.maxParticipants - n.claimed}} over</p>
         </div>
       </div>
     </div>
   </div>
-  <p class="description">{{ this.Company.description}} </p>
 </div>
 
 <div class="companyLinks">

@@ -6,6 +6,7 @@ import { Guid } from "guid-typescript";
 import { Loginmodel } from "../model/company/loginmodel";
 import { NgForm } from '@angular/forms';
 import {NavbarComponent} from "../navbar/navbar.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-company-login',
@@ -18,44 +19,37 @@ export class CompanyLoginComponent {
   UserPassword: string = '';
 
 
-constructor(@Inject(AuthenticationService) private authService: AuthenticationService, private router: Router, private navbar: NavbarComponent) {
+constructor(@Inject(AuthenticationService) private authService: AuthenticationService, private router: Router, private navbar: NavbarComponent, private toastr : ToastrService) {
 
 }
 
 isValid(): boolean {
-    console.log('Email:', this.UserEmail);
-    console.log('Password:', this.UserPassword);
     return this.UserEmail.trim() !== '' && this.UserPassword.trim() !== '';
 }
 
 onSubmit() {
   console.log('onSubmit called');
-    if (!this.isValid()) {
-        console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
-        return;
-    }
-console.log('form ingevuld')
-
-let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
-        console.log(loginData)
-
-    this.authService.login(loginData)
-        .subscribe(
-            (result: any) => {
-              console.log('Login result:', result);
-                if (result != null) {
-                  console.log('Token ontvangen. Ingelogd.');
-                  this.navbar.isLogedin = true
-                  this.router.navigate(['']);
-                } else {
-                    console.log('Inloggen mislukt. Geen token ontvangen.');
-                }
-            },
-            (error) => {
-                console.error('Inloggen mislukt', error);
-            }
-        );
-}
+  if (!this.isValid()) {
+      console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
+      return;
+  }
+  let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
+  this.authService.login(loginData)
+      .subscribe(
+          (result: any) => {
+              if (result != null) {
+                this.toastr.success("U bent ingelogd")
+                this.navbar.isLogedin = true
+                this.router.navigate(['']);
+              } else {
+                  console.log('Inloggen mislukt. Geen token ontvangen.');
+              }
+          },
+          (error) => {
+              this.toastr.error("Email en wachtwoord komen niet overeen")
+          }
+      );
+  }
 
 }
 
