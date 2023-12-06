@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Guid } from "guid-typescript";
 import { Loginmodel } from "../model/company/loginmodel";
 import { NgForm } from '@angular/forms';
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-company-login',
@@ -17,7 +18,7 @@ export class CompanyLoginComponent {
   UserPassword: string = '';
 
 
-constructor(@Inject(AuthenticationService) private authService: AuthenticationService, private router: Router) {
+constructor(@Inject(AuthenticationService) private authService: AuthenticationService, private router: Router, private navbar: NavbarComponent) {
 
 }
 
@@ -47,6 +48,7 @@ let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
                   // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
                   this.authService.setToken(result.companyResponse);
                   // Use the ID as needed
+                  this.navbar.isLogedin = true
                   this.router.navigate(['']);
                 } else {
                     console.log('Inloggen mislukt. Geen token ontvangen.');

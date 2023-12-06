@@ -65,7 +65,7 @@ export class CreateCompanyComponent {
 
   cancel() {
     console.log('Formulier geannuleerd');
-    this.router.navigate([''])
+    this.router.navigate(['login'])
   }
 
 }

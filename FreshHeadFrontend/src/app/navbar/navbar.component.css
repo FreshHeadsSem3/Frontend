@@ -23,6 +23,11 @@
   color: #EDEEFF;
 }
 
+.nav_login{
+  position: absolute;
+  right: 3vw;
+}
+
 .link {
   color: #EDEEFF;
   text-decoration: none;

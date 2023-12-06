@@ -20,5 +20,6 @@ export class NavbarComponent {
 
   public Logout(){
     this.authService.deleteToken()
+    this.isLogedin = false;
   }
 }

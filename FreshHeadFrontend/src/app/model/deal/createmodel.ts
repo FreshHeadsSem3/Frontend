@@ -1,7 +1,6 @@
 import { Guid } from 'guid-typescript';
 
 export class Createmodel {
-  public CompanyID: Guid;
   public Title: string;
   public Description: string;
   public Location: string;
@@ -10,8 +9,7 @@ export class Createmodel {
   public ActiveTill: Date;
   public CategoryID: Guid;
 
-  constructor(CompanyID: Guid, Title: string, Description: string, Location: string, Images: string[], MaxParticipants: number, ActiveTill: Date, CategoryID: Guid) {
-    this.CompanyID = CompanyID;
+  constructor(Title: string, Description: string, Location: string, Images: string[], MaxParticipants: number, ActiveTill: Date, CategoryID: Guid) {
     this.Title = Title;
     this.Description = Description;
     this.Location = Location;

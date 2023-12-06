@@ -22,11 +22,14 @@ export class JwtInterceptorService implements HttpInterceptor {
     return next.handle(request);
   }
   addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
-    return request.clone({
+    request = request.clone({
       setHeaders: {
+        'Content-Type': 'application/json; charset=utf-8',
+        Accept: 'application/json',
         Authorization: `Bearer ${this.authService.getToken()}`
       }
     });
+    return request;
   }
 
 }

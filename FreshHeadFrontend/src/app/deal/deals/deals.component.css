@@ -28,6 +28,7 @@
 .dealCardImage img {
   width: 100%;
   max-height: 100%;
+  min-height: 100%;
   position: absolute;
   object-fit: cover;
   top: 50%;
@@ -86,10 +87,12 @@ img{
 
 .cardContainer{
   background-color: white;
-  min-height: 94vh;
+  min-height: 92vh;
   width: 80vw;
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 1px;
 }
 
 .textcontainer{

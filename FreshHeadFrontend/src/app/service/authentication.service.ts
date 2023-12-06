@@ -12,10 +12,6 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AuthenticationService {
 
-  httpOptions = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
-  }
-
   constructor(private http: HttpClient) { }
 
   private tokenKey = 'jwtToken';
