@@ -12,6 +12,10 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AuthenticationService {
 
+  httpOptions = {
+    headers: new HttpHeaders().set('Content-Type', 'application/json')
+  }
+
   constructor(private http: HttpClient) { }
 
   private tokenKey = 'jwtToken';
@@ -44,37 +48,18 @@ export class AuthenticationService {
   }
 
   getToken(): any {
-   
+
     return localStorage.getItem(this.tokenKey);
 
   }
 
-  setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  setToken(companyResponse: string): void {
+    // Manually set the token in local storage
+    localStorage.setItem(this.tokenKey, companyResponse);
   }
 
-  isTokenExpired(): boolean {
-    const token = this.getToken();
-    if (!token) {
-      return true; // Token is not present
-    }
-    const tokenData = JSON.parse(atob(token.split('.')[1]));
-    const expirationDate = new Date(tokenData.exp * 1000);
-    return expirationDate <= new Date();
-
-  }
-
-  refreshToken(): Observable<TokenResponse> {
-    const token = this.getToken();
-
-    return this.http.post<TokenResponse>(`${this.apiUrl}/refresh`, { token }).pipe(
-      tap((tokenResponse) => {
-        if (tokenResponse) {
-          this.setToken(tokenResponse.token);
-        }
-      }));
-
-
-    // Implement token refresh logic and make a request to the backend
+  deleteToken() {
+    localStorage.removeItem(this.tokenKey)
   }
 }
+

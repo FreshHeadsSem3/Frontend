@@ -1,39 +1,17 @@
 <div class="login-form">
-    <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-        <h2 class="h5 mb-3 mb-lg-0">Sign in</h2>
+  <div class="col-lg-6">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="UserEmail">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="UserPassword">
 
-        <!-- Main content -->
-        <div class="row">
-            <!-- Left side -->
-            <div class="col-lg-8">
-
-
-                <!-- Basic information -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-
-                                    <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" [(ngModel)]="UserEmail">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control" [(ngModel)]="UserPassword">
-                                </div>
-                            </div>
-                            <form (ngSubmit)="onSubmit()">
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <form (ngSubmit)="onSubmit()">
+          <button type="submit" class="btn btn-primary" style="margin-top: 10px">Login</button>
+        </form>
+        <div style="margin-top: 10px">
+          <a routerLink="/create-company" class="link">Registreren</a>
         </div>
-    </div>
+      </div>
+  </div>
 </div>

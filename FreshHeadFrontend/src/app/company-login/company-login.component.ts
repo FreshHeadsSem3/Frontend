@@ -44,13 +44,10 @@ let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
               console.log('Login result:', result);
                 if (result != null) {
                   console.log('Token ontvangen. Ingelogd.');
-                    // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
-                    this.authService.setToken(result.companyResponse);
-                    const ID = result.ID; // replace with the actual property name in the response
-
-                // Use the ID as needed
-                console.log('Company ID:', ID);
-                    this.router.navigate(['']);
+                  // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
+                  this.authService.setToken(result.companyResponse);
+                  // Use the ID as needed
+                  this.router.navigate(['']);
                 } else {
                     console.log('Inloggen mislukt. Geen token ontvangen.');
                 }
