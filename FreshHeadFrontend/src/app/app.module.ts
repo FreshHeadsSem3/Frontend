@@ -56,7 +56,7 @@ import { JwtInterceptorService } from './service/jwt-interceptor.service';
     MatInputModule
   ],
   providers: [ {
-    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
+    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true
   }
   ],
   bootstrap: [AppComponent]
