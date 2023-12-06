@@ -42,7 +42,7 @@ let loginData: Loginmodel = new Loginmodel(this.UserEmail, this.UserPassword);
         .subscribe(
             (result: any) => {
               console.log('Login result:', result);
-                if (result && result.companyResponse) {
+                if (result != null) {
                   console.log('Token ontvangen. Ingelogd.');
                     // Succesvol ingelogd, sla het token op en navigeer naar de homepagina
                     this.authService.setToken(result.companyResponse);
