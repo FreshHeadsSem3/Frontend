@@ -15,36 +15,17 @@ export class JwtInterceptorService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.authService.isTokenExpired()) {
-      return this.authService.refreshToken().pipe(
-        switchMap((tokenResponse) => {
-          if (tokenResponse) {
-            this.authService.setToken(tokenResponse.token);
-            request = this.addTokenToRequest(request, tokenResponse.token);
-            return next.handle(request);
-          }
-          // Handle the case where token refresh failed, e.g., logout the user
-          // or redirect to the login page.
-          return throwError('Token refresh failed.');
-        }),
-        catchError((error) => {
-          // Handle token refresh error, e.g., logout or redirect to the login page.
-          return throwError(error);
-        })
-      );
+    console.log()
+    if(this.authService.getToken()){
+      request = this.addToken(request, this.authService.getToken());
     }
-
-    // If the token is not expired, add it to the request headers.
-    const token = this.authService.getToken();
-    request = this.addTokenToRequest(request, token);
     return next.handle(request);
   }
-
-  private addTokenToRequest(request: HttpRequest<any>, token: string): HttpRequest<any> {
+  addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
     return request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${this.authService.getToken()}`
+      }
     });
   }
 

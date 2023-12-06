@@ -25,7 +25,6 @@ import {MatInputModule} from "@angular/material/input";
 import { CompaniesComponent } from './company/companies/companies.component';
 import { CancelDealComponent } from './deal/cancel-deal/cancel-deal.component';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
-import { JwtInterceptorService } from './service/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
