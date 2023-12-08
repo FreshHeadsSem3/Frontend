@@ -6,6 +6,9 @@ import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
 import {EmailModel} from "../model/email-model";
+import {Company} from '../model/company/company';
+import {RemoveParticipant} from "../model/remove-participant";
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,14 @@ export class DealService {
   httpOptions = {
     headers: new HttpHeaders().set('Content-Type', 'application/json')
   }
-  constructor(private http: HttpClient) {}
+  httpOptionsWithToken = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })
+  };
+
+  constructor(private http: HttpClient, private authService : AuthenticationService) {}
 
   getAllDeals() : Observable<Deal[]>{
     return this.http.get<Deal[]>(this.apiURL, this.httpOptions)
@@ -29,13 +39,27 @@ export class DealService {
     return this.http.get<Deal>(this.apiURL+"/"+dealID.toString(), this.httpOptions)
   }
 
+  getDealByCompanyID(companyID: Guid) : Observable<Deal[]>{
+    return this.http.get<Deal[]>(this.apiURL+"/company/"+companyID.toString(), this.httpOptions)
+  }
+
   postDeal(createDeal: Createmodel) : Observable<Deal>{
-    console.log(createDeal)
-    return this.http.post<Deal>(this.apiURL, JSON.stringify(createDeal), this.httpOptions)
+    this.httpOptionsWithToken = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+    console.log(this.httpOptionsWithToken, "DIt is de hader")
+    return this.http.post<Deal>(this.apiURL, JSON.stringify(createDeal), this.httpOptionsWithToken)
   }
 
   postMail(emailModel: EmailModel) : Observable<boolean>{
     return this.http.post<boolean>(this.apiURL+"/ClaimDeal", JSON.stringify(emailModel), this.httpOptions)
+  }
+
+  RemoveParticipant(removeModel : RemoveParticipant) : Observable<boolean> {
+    return this.http.post<boolean>(this.apiURL+"/CancelDeal", JSON.stringify(removeModel), this.httpOptions)
   }
 
   getAllCategories() : Observable<Category[]>{

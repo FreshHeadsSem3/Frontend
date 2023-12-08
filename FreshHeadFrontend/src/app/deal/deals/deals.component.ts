@@ -24,6 +24,7 @@ export class DealsComponent {
           this.toastr.error("Er zijn geen deals gevonden", "Error")
         } else {
           this.AllDeals = element
+          console.log(this.AllDeals)
         }
       })
     this.dealService.getAllCategories().subscribe(element => {

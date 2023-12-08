@@ -4,6 +4,8 @@ import {CompanyService} from "../../service/company.service";
 import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/company/createmodel";
+import { DealsComponent } from 'src/app/deal/deals/deals.component';
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -17,8 +19,16 @@ export class CreateCompanyComponent {
   description: string = '';
   kvk: number = NaN;
   image: string = '';
+  email: string = '';
+  password: string = '';
+  link1: string = '';
+  link2: string = '';
+  link3: string = '';
+  link4: string = '';
 
-  constructor(private companyService: CompanyService, private router: Router) {
+  submitted = false;
+
+  constructor(private companyService: CompanyService, private router: Router, private toastr : ToastrService) {
 
   }
 
@@ -30,34 +40,33 @@ export class CreateCompanyComponent {
   }
 
   onSubmit() {
-
-    console.log('Formulier ingediend');
-    console.log('Titel:', this.title);
-    console.log('Beschrijving:', this.description);
-    console.log('Kvk:', this.kvk);
-    console.log('Foto:', this.image);
-
+    this.submitted = true;
     if (!this.isValid()) {
-      console.log('Validatie is mislukt. Het formulier wordt niet ingediend.');
+      this.toastr.info("Niet alle velden zijn correct ingevuld");
+    } else {
+      let company: Createmodel = new Createmodel(this.title, this.description, this.kvk, [this.image], this.email, this.password, this.link1, this.link2, this.link3, this.link4)
+      this.companyService.postCompany(company).subscribe(result =>{
+        if(result == null){
+          this.toastr.error("Bedrijf niet aangemaakt")
+          console.log("company is empty")
+        } else {
+          this.toastr.success("Het bedrijf is aangemaakt")
+          this.router.navigate(['company'], { queryParams: { data: JSON.stringify(result.id) }});
+        }
+      })
     }
-    let company: Createmodel = new Createmodel(this.title, this.description, this.kvk, [this.image])
-    this.companyService.postCompany(company).subscribe(result =>{
-      if(result == null){
-        console.log("company is empty")
-      } else {
-        this.router.navigate(['company'], { queryParams: { data: JSON.stringify(result.id) }});
-      }
-    })
   }
 
   isValid(): boolean {
-
-    return true;
+    if(this.title.length >= 4 && this.kvk.toString().length == 8 && this.image.length >= 1 && this.email.length >= 6 && this.password.length >= 8){
+      return true;
+    }
+    return false
   }
 
   cancel() {
-
-    console.log('Formulier geannuleerd');
+    this.toastr.info("Bedrijfsinfo niet opgeslagen")
+    this.router.navigate(['login'])
   }
 
 }

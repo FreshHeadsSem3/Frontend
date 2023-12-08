@@ -1,15 +1,13 @@
 
 <div class="container-fluid">
-
+  <form (ngSubmit)="onSubmit()">
   <div class="container">
     <!-- Title -->
     <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
       <h2 class="h5 mb-3 mb-lg-0">Voeg een nieuwe company toe</h2>
-      <div class="btn-group">
-          <form (ngSubmit)="onSubmit()">
-          <button type="submit" class="btn btn-primary">Opslaan</button>
+        <div class="btn-group">
+          <input type="submit" class="btn btn-primary" value="Opslaan">
           <button type="button" class="btn btn-secondary" (click)="cancel()">Annuleren</button>
-          </form>
         </div>
     </div>
 
@@ -25,19 +23,25 @@
               <div class="col-lg-6">
                 <div class="mb-3">
                   <label class="form-label">Titel</label>
-                  <input type="text" class="form-control" [(ngModel)]="title">
+                  <input type="text" class="form-control" [(ngModel)]="this.title" name="title">
+                  <div *ngIf="submitted && title.length < 4" class="text-danger">
+                    Titel moet minstens 4 tekens lang zijn.
+                  </div>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="mb-3">
-                  <label class="form-label">Beschrijving</label>
-                  <input type="text" class="form-control" [(ngModel)]="description">
+                  <label class="form-label">Beschrijving (optioneel)</label>
+                  <input type="text" class="form-control" name="description" [(ngModel)]="this.description">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="mb-3">
                   <label class="form-label">KVK</label>
-                  <input type="number" pattern="[0-9]*" maxlength="8" class="form-control" [(ngModel)]="kvk" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                  <input type="number" class="form-control" [(ngModel)]="this.kvk" name="kvk" required>
+                  <div *ngIf="submitted && kvk.toString().length !== 8" class="text-danger">
+                    KVK moet exact 8 cijfers bevatten.
+                  </div>
                 </div>
               </div>
             </div>
@@ -49,11 +53,67 @@
         <!-- Avatar -->
         <div class="card mb-4">
           <div class="card-body">
-            <h3 class="h6">Foto</h3>
-            <input type="text" class="form-control" [(ngModel)]="image">
+            <label class="form-label">Image</label>
+            <input type="text" class="form-control" [(ngModel)]="image" name="image" required>
+            <div *ngIf="submitted && image.length < 1" class="text-danger">
+              Afbeelding is verplicht.
+            </div>
           </div>
         </div>
-        <!-- Notes -->
 
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6 mb-4">Inloggegevens</h3>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
+                <div *ngIf="submitted && email.length < 6" class="text-danger">
+                  Email moet minstens 6 tekens bevatten.
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Wachtwoord</label>
+              <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+              <div *ngIf="submitted && password.length < 8" class="text-danger">
+                Wachtwoord moet minstens 8 tekens bevatten.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="h6 mb-4">Links (optioneel)</h3>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Link 1</label>
+                <input type="text" class="form-control" [(ngModel)]="link1" name="link1">
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Link 2</label>
+                <input type="text" class="form-control" [(ngModel)]="link2" name="link2">
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Link 3</label>
+                <input type="text" class="form-control" [(ngModel)]="link3" name="link3">
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Link 4</label>
+                <input type="text" class="form-control" [(ngModel)]="link4" name="link4">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  </form>
+</div>

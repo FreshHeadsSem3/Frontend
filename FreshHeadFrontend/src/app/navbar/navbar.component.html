@@ -1,10 +1,17 @@
 <header class="header">
   <h1 routerLink="/" class="logo">EduDeals</h1>
   <div class="nav_link">
-    <a routerLink="/create-deal" class="link">Create Deal</a>
+    <a routerLink="/" class="link">Deals</a>
   </div>
   <div class="nav_link">
-    <a routerLink="/create-company" class="link">Create Company</a>
+    <a routerLink="/companies" class="link">Bedrijven</a>
+  </div>
+  <div class="nav_link">
+    <a routerLink="/create-deal" class="link" *ngIf="this.isLogedin == true">Deal aanmaken</a>
+  </div>
+  <div class="nav_login">
+    <a routerLink="/login" class="link" *ngIf="this.isLogedin == false">Inloggen</a>
+    <a routerLink="/" class="link" *ngIf="this.isLogedin == true" (click)="Logout()">Uitloggen</a>
   </div>
 </header>
 <router-outlet></router-outlet>

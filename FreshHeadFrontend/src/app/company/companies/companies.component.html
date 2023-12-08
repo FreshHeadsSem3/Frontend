@@ -1,0 +1,16 @@
+<div style="display: flex">
+  <div class="filterMenu">
+  </div>
+  <div class="cardContainer">
+    <div class="companyCard" *ngFor="let n of AllCompanies" (click)="navigateInfoCompany(n.id)">
+      <div class="companyCardImage" #imageDiv>
+        <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
+      </div>
+      <div class="companyCardText" [style.maxWidth.px]="imageDiv.clientWidth-40">
+        <h1>{{ n.title }}</h1>
+        <p class="textcontainer">{{ n.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

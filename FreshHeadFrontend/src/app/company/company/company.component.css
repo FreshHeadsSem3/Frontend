@@ -1,31 +1,146 @@
-.company_container {
+.company {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
+  flex-direction: row;
+  width: 100%;
+  margin: 1%;
 }
 
-.title_container {width: 50vw}
+.companyInfo{
+  background-color: white;
+  min-height: 77vh;
+  width: 32%;
+  margin: 10px;
+  margin-right: 20px;
+}
 
-.title {
-  font-family: Proxima;
-  font-size: 45px;
-  line-height: 50px;
-  color: #262b30;
+.companyDeals{
+  background-color: white;
+  min-height: 50vh;
+  display: flex;
+  flex-wrap: wrap
+}
+
+.FlexContainer{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+
+.TitleContainer{
+  margin-left: 10px;
+  font-size: 40px;
+}
+
+.TitleContainer p{
+  margin-bottom: 0;
 }
 
 .company_image{
-  max-width: 50vw;
-  margin-top: 3vh;
-  border-radius: 3px;
-  box-shadow: 3px 3px 5px #0000005c;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  border-radius: 20px;
 }
 
-.description{
-  width: 50vw;
+.company_image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: scale-down;
+}
+
+.companyLinks{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.dealCard {
+  overflow: hidden;
+  max-height: 47vh;
+  max-width: 20vw;
+  min-width: 15vw;
+  flex-basis: 200px;
+  flex-grow: 1;
+  background: white;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.dealCard:hover {
+  scale: 1.03;
+}
+
+.dealCardImage{
+  max-width: fit-content;
+  max-height: 50%;
+  overflow: hidden;
+}
+
+.dealCarImage {
+  object-fit: scale-down;
+}
+
+.dealCardText{
+  padding: 0 20px;
+  height: 40%;
+  overflow: hidden;
+}
+
+.dealCardExpire{
+  margin-top: 2%;
+  height: 5%;
+  width: 100%;
+  display: flex;
+}
+
+.dealCardExpireDate{
+  width: 45%;
+  height: 100%;
+  margin: 0 0 0 5%;
+}
+
+.dealCardExpireParticipants{
+  width: 100%;
+  height: 100%;
+  margin: 0 5% 0 0;
+  text-align: right;
+}
+
+h1{
+  margin-top: 5px;
   font-family: Neutrif;
-  margin: 0;
-  font-size: 20px;
-  line-height: 36px;
-  color: #262b30;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+p{
+  font-family: Neutrif
+}
+
+img{
+  max-width: 100%;
+  max-height: 50%;
+  overflow: hidden;
+}
+
+.filterMenu{
+  background-color: white;
+  min-height: 94vh;
+  width: 20vw
+}
+
+.cardContainer{
+  background-color: white;
+  min-height: 94vh;
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap
+}
+
+.textcontainer{
+  max-height: 20px;
 }

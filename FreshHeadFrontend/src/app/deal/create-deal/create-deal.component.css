@@ -1,3 +1,11 @@
+.container{
+  max-height: 92vh;
+}
+
+.container-fluid{
+  overflow: auto;
+}
+
 body{
     background:#eee;
 }

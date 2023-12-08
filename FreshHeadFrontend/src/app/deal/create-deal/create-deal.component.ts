@@ -1,18 +1,12 @@
 import { Component, OnInit  } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import {DealService} from "../../service/deal.service";
 import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/deal/createmodel";
 import {ToastrService} from "ngx-toastr";
 import { Company } from 'src/app/model/company/company';
-import { CompanyService } from 'src/app/service/company.service';
 import {Category} from "../../model/deal/category";
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDatepickerModule, MatDatepickerIntl} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-create-deal',
@@ -35,18 +29,9 @@ export class CreateDealComponent{
   companies!: Company[];
   companyID!: Guid;
 
-  constructor(private dealService: DealService, private router: Router, private companyService: CompanyService, private adapter: DateAdapter<any>, private toastr: ToastrService) {
+  constructor(private dealService: DealService, private router: Router, private adapter: DateAdapter<any>, private toastr: ToastrService) {
 
-    this.adapter.setLocale('fr')
-
-    companyService.getCompanies()
-      .subscribe(result => {
-        if (result == null){
-          this.toastr.error("Er zijn geen bedrijven gevonden", "Error")
-        } else {
-          this.companies = result;
-        }
-      })
+    this.adapter.setLocale('nl')
 
     this.dealService.getAllCategories().subscribe(element => {
       if (element == null){
@@ -67,21 +52,22 @@ export class CreateDealComponent{
   onSubmit() {
     if (!this.isValid()) {
       this.toastr.error("Er is een fout met een van de velden", "Error")
-    }
-    let today = new Date()
-    if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
-      this.selectedDate = new Date(1999,1,1)
-    }
-    let deal: Createmodel = new Createmodel(this.companyID, this.title, this.description, this.location, [this.image], this.MaxParticipants, this.selectedDate, this.selectedCategorie)
-    console.log(deal)
-    this.dealService.postDeal(deal).subscribe(result =>{
-      if(result == null){
-        this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
-      } else {
-        this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
-        this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
+    } else {
+      let today = new Date()
+      if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
+        this.selectedDate = new Date(1999,1,1)
       }
-    })
+      let deal: Createmodel = new Createmodel(this.title, this.description, this.location, [this.image], this.MaxParticipants, this.selectedDate, this.selectedCategorie)
+      console.log(deal)
+      this.dealService.postDeal(deal).subscribe(result =>{
+        if(result == null){
+          this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
+        } else {
+          this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
+          this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
+        }
+      })
+    }
   }
 
 
@@ -90,7 +76,8 @@ export class CreateDealComponent{
   }
 
   cancel() {
-    this.toastr.info("Deal verwijderd", "Info")
+    this.toastr.info("Deal aanmaken geannulleerd", "Info")
+    this.router.navigate([''])
   }
 
 }
