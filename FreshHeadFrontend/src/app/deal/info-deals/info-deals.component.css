@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  overflow-y: auto;
+  height: 92vh;
 }
 
 .title_container {width: 50vw}

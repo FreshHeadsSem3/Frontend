@@ -1,0 +1,18 @@
+<div style="display: flex">
+  <div class="cardContainer">
+    <div class="dealCard" [style]="{'box-shadow': !HasDatePassed(n.activeTill) || n.maxParticipants - n.claimed == 0 ? 'rgb(255 0 0 / 30%) 0px 10px 30px 0px' : '0 10px 30px 0 rgba(0,0,0,0.2)'}" *ngFor="let n of Deals" (click)="navigateInfoDeal(n.id)">
+      <div class="dealCardImage" #imageDiv>
+        <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
+      </div>
+      <div class="dealCardText">
+        <h1>{{ n.title }}</h1>
+        <p class="textcontainer">{{ n.description }}</p>
+      </div>
+      <div class="dealCardExpire">
+        <p class="dealCardExpireDate" [style]="{'color': HasDatePassed(n.activeTill) ? 'black' : 'red'}" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
+        <p class="dealCardExpireParticipants" [style]="{'color': n.maxParticipants - n.claimed == 0 ? 'red' : 'black'}" *ngIf="n.maxParticipants > 0">{{n.maxParticipants - n.claimed}} over</p>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

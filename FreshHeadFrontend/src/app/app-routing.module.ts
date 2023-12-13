@@ -8,10 +8,12 @@ import { CreateCompanyComponent } from './company/create-company/create-company.
 import { CompaniesComponent } from './company/companies/companies.component';
 import {CancelDealComponent} from "./deal/cancel-deal/cancel-deal.component";
 import { CompanyLoginComponent } from './company-login/company-login.component';
+import {DealManagementComponent} from "./deal/deal-management/deal-management.component";
 
 const routes: Routes = [
   { path: '', component: DealsComponent, pathMatch: 'full'},
   { path: 'create-deal', component: CreateDealComponent},
+  { path: 'manage-deals', component: DealManagementComponent},
   {path: 'login', component: CompanyLoginComponent},
   { path: 'company', component: CompanyComponent},
   { path: 'deal', component: InfoDealsComponent},
