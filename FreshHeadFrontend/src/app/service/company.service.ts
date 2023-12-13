@@ -35,4 +35,8 @@ export class CompanyService {
   getCompanyByDealID(dealID: Guid) : Observable<Company>{
     return this.http.get<Company>('https://localhost:51800/company/deal/'+dealID.toString(), this.httpOptions)
   }
+
+  searchByName(title: string) : Observable<Company[]>{
+    return this.http.get<Company[]>('https://localhost:51800/company/companies/title/'+title, this.httpOptions)
+  }
 }

@@ -13,6 +13,7 @@ import { CompanyService } from 'src/app/service/company.service';
 export class CompaniesComponent {
   public AllCompanies: Company[] = [];
   public ErrorMassage: string = "";
+  public CompanyTitle: string = "";
 
   constructor(private companyService: CompanyService, private router: Router, private toastr: ToastrService) {
     this.companyService.getAllCompanies()
@@ -31,5 +32,18 @@ export class CompaniesComponent {
 
   public MustDateBeShown(date: Date) : Boolean {
     return new Date(date) > new Date("2001-01-01");
+  }
+
+  public SearchByName(title: string){
+    console.log(title)
+    this.companyService.searchByName(title).subscribe(element => {
+      if (element == null){
+        this.toastr.error("Er zijn geen deals gevonden", "Error")
+      } else if(element.length == 0) {
+        this.toastr.error("Er zijn met deze naam geen bedrijven beschikbaar", "Error")
+      } else {
+        this.AllCompanies = element
+      }
+    })
   }
 }

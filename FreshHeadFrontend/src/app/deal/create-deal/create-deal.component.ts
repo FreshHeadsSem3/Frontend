@@ -70,6 +70,9 @@ export class CreateDealComponent{
     }
   }
 
+  public HasDatePassed(date : Date) : Boolean {
+    return new Date(date) > new Date()
+  }
 
   isValid(): boolean {
     return true;

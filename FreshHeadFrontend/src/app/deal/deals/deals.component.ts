@@ -16,6 +16,7 @@ export class DealsComponent {
   public ErrorMassage: string = "";
   public Categories: Category[] = [];
   public SelectedCategory: string = "";
+  public DealTitle: string = "";
 
   constructor(private dealService: DealService, private router: Router, private toastr: ToastrService) {
     this.dealService.getAllDeals()
@@ -24,7 +25,6 @@ export class DealsComponent {
           this.toastr.error("Er zijn geen deals gevonden", "Error")
         } else {
           this.AllDeals = element
-          console.log(this.AllDeals)
         }
       })
     this.dealService.getAllCategories().subscribe(element => {
@@ -46,6 +46,19 @@ export class DealsComponent {
 
   public HasDatePassed(date : Date) : Boolean {
     return new Date(date) > new Date()
+  }
+
+  public SearchByName(title: string){
+    console.log(title)
+    this.dealService.searchByName(title).subscribe(element => {
+      if (element == null){
+        this.toastr.error("Er zijn geen deals gevonden", "Error")
+      } else if(element.length == 0) {
+        this.toastr.error("Er zijn met deze naam geen deals beschikbaar", "Error")
+      } else {
+        this.AllDeals = element
+      }
+    })
   }
 
   public FilterByCatagory(){
