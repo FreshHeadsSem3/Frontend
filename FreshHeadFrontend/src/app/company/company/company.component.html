@@ -31,9 +31,18 @@
       </div>
     </div>
   </div>
-
-  <p><a href="{{Company.link1}}" target="_blank">{{Company.link1}}</a></p>
-  <p><a href="{{Company.link2}}" target="_blank"><i class="material-icons">facebook</i></a></p>
-  <p><a href="{{Company.link3}}" target="_blank"><i class="material-icons">instagram</i></a></p>
-  <p><a href="{{Company.link4}}" target="_blank"><i class="material-icons">linkedin</i></a></p>
+<p style="display: flex; justify-content: space-evenly; width: 32vw; height: 60px;">
+  <ng-container *ngIf="Company.link1">
+  <a href="{{Company.link1}}" target="_blank"><img class="icoon" src="https://assets.stickpng.com/images/62207cf7944f5cd67921e29e.png"></a>
+  </ng-container>
+  <ng-container *ngIf="Company.link2">
+  <a href="{{Company.link2}}" target="_blank"><img class="icoon" src="https://janpieterkeller.com/wp-content/uploads/2019/01/Icoon-Facebook-zwart.png"></a>
+  </ng-container>
+  <ng-container *ngIf="Company.link3">
+  <a href="{{Company.link3}}" target="_blank"><img class="icoon" src="https://cdn.icon-icons.com/icons2/3261/PNG/512/instagram_logo_icon_206739.png"></a>
+  </ng-container>
+  <ng-container *ngIf="Company.link4">
+  <a href="{{Company.link4}}" target="_blank"><img class="icoon" src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk4Mi1kMi0xMC5wbmc.png"></a>
+  </ng-container>
+</p>
 </div>
