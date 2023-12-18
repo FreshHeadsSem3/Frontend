@@ -30,11 +30,17 @@ export class DealManagementComponent {
     return new Date(date) > new Date("2001-01-01");
   }
 
-  navigateInfoDeal(dealID: Guid) {
-    this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(dealID) } });
+  public navigateEditDeal(dealID: Guid) {
+    this.router.navigate(['editDeal'], { queryParams: { data: JSON.stringify(dealID) } });
   }
 
-  public HasDatePassed(date : Date) : Boolean {
-    return new Date(date) > new Date()
+  public HasDatePassed(date : Date) : boolean {
+    if(new Date(date) < new Date()){
+      if(new Date(date) < new Date(2001,1)){
+        return true;
+      }
+      return false;
+    }
+    return true;
   }
 }

@@ -1,0 +1,14 @@
+<div class="deal_container">
+  <img class="deal_image" src="{{this.deal.images[0]}}">
+  <div class="dealinfocontainer">
+    <div class="DIC_eventDatum" [style]="{'color': HasDatePassed(this.deal.eventDate) ? 'black' : 'red'}">Datum van event: {{this.deal.eventDate | date:'dd-MM-yyyy'}}</div>
+    <div class="DIC_datum" [style]="{'color': HasDatePassed(this.deal.activeTill) ? 'black' : 'red'}">Eind datum deal: {{this.deal.activeTill | date:'dd-MM-yyyy'}}</div>
+    <div class="DIC-participantcount" [style]="{'color': this.deal.maxParticipants - this.deal.claimed == 0 ? 'red' : 'black'}" *ngIf="this.deal.maxParticipants != 0">Coupons: {{this.deal.maxParticipants - this.deal.claimed}} over</div>
+  </div>
+  <div class="title_container">
+    <input type="text" class="title" value="{{this.deal.title}}"/>
+  </div>
+  <textarea type="text" class="description">{{this.deal.description}}</textarea>
+
+  <input class="location_div" *ngIf="this.deal.location.length > 4" value="{{this.deal.location}}">
+</div>
