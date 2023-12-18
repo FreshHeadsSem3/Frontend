@@ -4,10 +4,16 @@
       <div class="mb-3">
         <label class="form-label">Categorie</label>
         <select class="form-select" [(ngModel)]="this.SelectedCategory">
-          <option *ngFor="let catagory of this.Categories" [ngValue]="catagory.name">{{catagory.name}}</option>
+          <option *ngFor="let category of this.Categories" [ngValue]="category.name">{{category.name}}</option>
         </select>
         <button (click)="FilterByCatagory()" class="btn btn-primary" style="margin-top: 10px;">Filter</button>
       </div>
+      <div class="mb-3">
+        <label class="form-label">Naam</label>
+        <input class="form-control" type="text" [(ngModel)]="this.DealTitle"/>
+        <button (click)="SearchByName(DealTitle)" class="btn btn-primary" style="margin-top: 10px;">Zoek</button>
+      </div>
+      <p *ngIf="SearchTitle != '' ">resultaten voor "{{SearchTitle}}"</p>
     </div>
   </div>
   <div class="cardContainer">

@@ -29,13 +29,13 @@ export class InfoDealsComponent {
       this.DealID = JSON.parse(params['data']);
       this.dealService.getDealByID(this.DealID).subscribe(result => {
         if(result == null){
-          this.toastr.error("Deal is niet gevonden")
+          this.toastr.error("De deal is niet gevonden")
           this._router.navigate([''])
         } else {
           this.deal = result;
           this.companyService.getCompanyByDealID(this.deal.id).subscribe(result => {
             if(result == null){
-              this.toastr.error("Company is niet gevonden")
+              this.toastr.error("Het bedrijf is niet gevonden")
               this._router.navigate([''])
             } else {
               this.company = result;
@@ -52,10 +52,10 @@ export class InfoDealsComponent {
       this.dealService.postMail(new EmailModel(this.DealID, this.UserEmail,this.GetMailMassage()))
         .subscribe(result => {
           if (result == null || result == false) {
-            this.toastr.error("Mail is niet verzonden", "Error")
+            this.toastr.error("De mail is niet verzonden")
             this.disableSendButton = false
           } else {
-            this.toastr.success("Mail is succesvol verzonden", "Voltooid")
+            this.toastr.success("De mail is succesvol verzonden", "Voltooid")
             this.modalService.close()
             this.disableSendButton = false
           }
