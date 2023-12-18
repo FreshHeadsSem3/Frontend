@@ -28,12 +28,12 @@ export class CancelDealComponent {
       this.dealService.getDealByID(this.DealID).subscribe(
         result => {
           if (result == null){
-            this.toastr.error("Deal is niet gevonden")
+            this.toastr.error("De deal is niet gevonden")
           } else {
             this.Deal = result
           }
         }, error => {
-          this.toastr.error("Deal is niet gevonden")
+          this.toastr.error("De deal is niet gevonden")
           this._router.navigate([''])
         }
       )
@@ -45,7 +45,7 @@ export class CancelDealComponent {
   public RemoveParticipation(){
     this.dealService.RemoveParticipant(new RemoveParticipant(this.DealID, this.Email)).subscribe(result => {
       if(result == null){
-        this.toastr.error("Geen verbinding met server")
+        this.toastr.error("Er is geen verbinding met server")
         this._router.navigate([""])
       } else if(result == false) {
         this.toastr.info("Je deelname is niet gevonden")

@@ -19,7 +19,7 @@ export class CompaniesComponent {
     this.companyService.getAllCompanies()
       .subscribe(element => {
         if (element == null){
-          this.toastr.error("Er zijn geen companies gevonden", "Error")
+          this.toastr.error("Er zijn geen companies gevonden")
         } else {
           this.AllCompanies = element
         }
@@ -38,9 +38,9 @@ export class CompaniesComponent {
     console.log(title)
     this.companyService.searchByName(title).subscribe(element => {
       if (element == null){
-        this.toastr.error("Er zijn geen deals gevonden", "Error")
+        this.toastr.error("Er zijn geen deals gevonden")
       } else if(element.length == 0) {
-        this.toastr.error("Er zijn met deze naam geen bedrijven beschikbaar", "Error")
+        this.toastr.info("Er zijn geen bedrijven beschikbaar met deze naam")
       } else {
         this.AllCompanies = element
       }

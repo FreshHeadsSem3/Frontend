@@ -13,6 +13,7 @@
         <input class="form-control" type="text" [(ngModel)]="this.DealTitle"/>
         <button (click)="SearchByName(DealTitle)" class="btn btn-primary" style="margin-top: 10px;">Zoek</button>
       </div>
+      <p *ngIf="SearchTitle != '' ">resultaten voor "{{SearchTitle}}"</p>
     </div>
   </div>
   <div class="cardContainer">

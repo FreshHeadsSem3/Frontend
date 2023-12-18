@@ -69,4 +69,8 @@ export class DealService {
   searchByName(title: string) : Observable<Deal[]>{
     return this.http.get<Deal[]>(this.apiURL+"/deals/title/"+title, this.httpOptions)
   }
+
+  searchByCompanyName(title: string) : Observable<Deal[]>{
+  return this.http.get<Deal[]>(this.apiURL+"/deals/company/"+title, this.httpOptions)
+  }
 }
