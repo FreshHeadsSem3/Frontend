@@ -4,6 +4,7 @@ import {Guid} from "guid-typescript";
 import {Deal} from "../../model/deal/deal";
 import {DealService} from "../../service/deal.service";
 import {ToastrService} from "ngx-toastr";
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-edit-deal',
@@ -16,7 +17,8 @@ export class EditDealComponent {
   public deal! : Deal;
 
 
-  constructor(private router: ActivatedRoute, private dealService: DealService, private toastr: ToastrService, private _router: Router) {
+  constructor(private router: ActivatedRoute, private dealService: DealService, private adapter: DateAdapter<any>, private toastr: ToastrService, private _router: Router) {
+    this.adapter.setLocale('nl')
   }
 
   ngOnInit() {
@@ -39,5 +41,13 @@ export class EditDealComponent {
 
   public HasDatePassed(date : Date) : Boolean {
     return new Date(date) > new Date()
+  }
+
+  public Cancel(){
+    this._router.navigate(['manage-deals'])
+  }
+
+  public Opslaan(){
+    this.dealService.updateDeal(this.deal)
   }
 }

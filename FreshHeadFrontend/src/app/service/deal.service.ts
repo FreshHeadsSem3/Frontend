@@ -47,14 +47,12 @@ export class DealService {
     return this.http.get<Deal[]>(this.apiURL+"/companyJWT/", this.httpOptions)
   }
 
+  updateDeal(deal : Deal) : Observable<Deal>{
+    console.log(JSON.stringify(deal))
+    return this.http.put<Deal>(this.apiURL+"/UpdateDeal", JSON.stringify(deal), this.httpOptionsWithToken)
+  }
+
   postDeal(createDeal: Createmodel) : Observable<Deal>{
-    this.httpOptionsWithToken = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`
-      })
-    };
-    console.log(this.httpOptionsWithToken, "DIt is de hader")
     return this.http.post<Deal>(this.apiURL, JSON.stringify(createDeal), this.httpOptionsWithToken)
   }
 

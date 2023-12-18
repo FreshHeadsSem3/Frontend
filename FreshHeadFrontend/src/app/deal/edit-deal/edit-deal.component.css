@@ -1,3 +1,5 @@
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
+
 .deal_container {
   display: flex;
   flex-direction: column;
@@ -10,6 +12,7 @@
 .title_container {width: 50vw}
 
 .title {
+  width: 50vw;
   font-family: Proxima;
   font-size: 45px;
   line-height: 50px;

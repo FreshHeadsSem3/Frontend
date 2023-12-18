@@ -1,14 +1,28 @@
 <div class="deal_container">
   <img class="deal_image" src="{{this.deal.images[0]}}">
   <div class="dealinfocontainer">
-    <div class="DIC_eventDatum" [style]="{'color': HasDatePassed(this.deal.eventDate) ? 'black' : 'red'}">Datum van event: {{this.deal.eventDate | date:'dd-MM-yyyy'}}</div>
-    <div class="DIC_datum" [style]="{'color': HasDatePassed(this.deal.activeTill) ? 'black' : 'red'}">Eind datum deal: {{this.deal.activeTill | date:'dd-MM-yyyy'}}</div>
-    <div class="DIC-participantcount" [style]="{'color': this.deal.maxParticipants - this.deal.claimed == 0 ? 'red' : 'black'}" *ngIf="this.deal.maxParticipants != 0">Coupons: {{this.deal.maxParticipants - this.deal.claimed}} over</div>
+    <div class="DIC_eventDatum" [style]="{'color': HasDatePassed(this.deal.eventDate) ? 'black' : 'red'}">Datum van event:
+      <mat-form-field>
+        <input [(ngModel)]="deal.eventDate" matInput [matDatepicker]="dp">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field></div>
+    <div class="DIC_datum" [style]="{'color': HasDatePassed(this.deal.activeTill) ? 'black' : 'red'}">Eind datum deal:
+      <mat-form-field>
+        <input [(ngModel)]="deal.activeTill" matInput [matDatepicker]="dp2">
+        <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+        <mat-datepicker #dp2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="DIC-participantcount">Totaal: <input type="number" value="{{this.deal.maxParticipants}}" [(ngModel)]="deal.maxParticipants" style="width: 80px"/> | Over: {{this.deal.maxParticipants - this.deal.claimed}}</div>
   </div>
   <div class="title_container">
-    <input type="text" class="title" value="{{this.deal.title}}"/>
+    <input type="text" class="title" [(ngModel)]="this.deal.title" value="{{this.deal.title}}"/>
   </div>
-  <textarea type="text" class="description">{{this.deal.description}}</textarea>
+  <textarea type="text" class="description" [(ngModel)]="this.deal.description">{{this.deal.description}}</textarea>
 
-  <input class="location_div" *ngIf="this.deal.location.length > 4" value="{{this.deal.location}}">
+  <input class="location_div" *ngIf="this.deal.location.length > 4" value="{{this.deal.location}}" [(ngModel)]="this.deal.location">
+
+
+  <button (click)="Opslaan()">Opslaan</button><button (click)="Cancel()">Cancel</button>
 </div>
