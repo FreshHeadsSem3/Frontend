@@ -16,12 +16,11 @@ export class DealsComponent {
   public ErrorMassage: string = "";
   public Categories: Category[] = [];
   public SelectedCategory: string = "";
+  public SelectedCategoryID!: Guid;
   public DealTitle: string = "";
   public SearchTitle: string = "";
 
   constructor(private dealService: DealService, private router: Router, private toastr: ToastrService) {
-    this.SearchTitle = ''
-    this.DealTitle = ''
     this.dealService.getAllDeals()
       .subscribe(element => {
         if (element == null) {
@@ -100,8 +99,8 @@ export class DealsComponent {
     this.DealTitle = ""
   }
 
-  public FilterByCatagory() {
-    if (this.SelectedCategory == 'Geen') {
+  public FilterByCategory() {
+    if (this.SelectedCategoryID == null) {
       this.dealService.getAllDeals()
         .subscribe(element => {
           if (element == null) {
@@ -113,7 +112,7 @@ export class DealsComponent {
           }
         })
     } else {
-      this.dealService.getAllDealsByCatagory(this.SelectedCategory).subscribe(element => {
+      this.dealService.getAllDealsByCategory(this.SelectedCategoryID).subscribe(element => {
         if (element == null) {
           this.toastr.error("Er zijn geen deals gevonden")
         } else if (element.length == 0) {

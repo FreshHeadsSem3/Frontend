@@ -3,10 +3,10 @@
     <div class="col-lg-6" style="width: 75%; margin-top: 15px;">
       <div class="mb-3">
         <label class="form-label">Categorie</label>
-        <select class="form-select" [(ngModel)]="this.SelectedCategory">
-          <option *ngFor="let category of this.Categories" [ngValue]="category.name">{{category.name}}</option>
+        <select class="form-select" [(ngModel)]="this.SelectedCategoryID">
+          <option *ngFor="let category of this.Categories" [ngValue]="category.dealCategoryID">{{category.name}}</option>
         </select>
-        <button (click)="FilterByCatagory()" class="btn btn-primary" style="margin-top: 10px;">Filter</button>
+        <button (click)="FilterByCategory()" class="btn btn-primary" style="margin-top: 10px;">Filter</button>
       </div>
       <div class="mb-3">
         <label class="form-label">Naam</label>
