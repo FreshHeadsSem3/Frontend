@@ -6,7 +6,6 @@ import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
 import {EmailModel} from "../model/email-model";
-import {Company} from '../model/company/company';
 import {RemoveParticipant} from "../model/remove-participant";
 import {AuthenticationService} from "./authentication.service";
 
@@ -48,8 +47,8 @@ export class DealService {
   }
 
   updateDeal(deal : Deal) : Observable<Deal>{
-    console.log(JSON.stringify(deal))
-    return this.http.put<Deal>(this.apiURL+"/UpdateDeal", JSON.stringify(deal), this.httpOptionsWithToken)
+    console.log(deal)
+    return this.http.put<Deal>(this.apiURL+"/UpdateDeal", JSON.stringify(deal), this.httpOptions)
   }
 
   postDeal(createDeal: Createmodel) : Observable<Deal>{
