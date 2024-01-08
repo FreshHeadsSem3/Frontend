@@ -47,6 +47,10 @@ export class DealService {
     return this.http.get<Deal[]>(this.apiURL+"/companyJWT/", this.httpOptions)
   }
 
+  getParticipantEmailsByDeal(dealID: Guid): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiURL}/GetParticipantsEmailByDeal/${dealID}`);
+  }
+
   postDeal(createDeal: Createmodel) : Observable<Deal>{
     this.httpOptionsWithToken = {
       headers: new HttpHeaders({
