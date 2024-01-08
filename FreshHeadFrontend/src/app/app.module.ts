@@ -27,6 +27,7 @@ import { CompaniesComponent } from './company/companies/companies.component';
 import { CancelDealComponent } from './deal/cancel-deal/cancel-deal.component';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { DealManagementComponent } from './deal/deal-management/deal-management.component';
+import { EditDealComponent } from './deal/edit-deal/edit-deal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { DealManagementComponent } from './deal/deal-management/deal-management.
     CancelDealComponent,
     CompanyLoginComponent,
     DealManagementComponent,
+    EditDealComponent,
   ],
   imports: [
     BrowserModule,
