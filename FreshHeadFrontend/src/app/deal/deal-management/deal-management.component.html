@@ -1,6 +1,6 @@
 <div style="display: flex">
   <div class="cardContainer">
-    <div class="dealCard" [style]="{'box-shadow': !HasDatePassed(n.activeTill) || n.maxParticipants - n.claimed == 0 ? 'rgb(255 0 0 / 30%) 0px 10px 30px 0px' : '0 10px 30px 0 rgba(0,0,0,0.2)'}" *ngFor="let n of Deals" (click)="navigateInfoDeal(n.id)">
+    <div class="dealCard" [style]="{'box-shadow': !HasDatePassed(n.activeTill) || n.maxParticipants - n.claimed == 0 ? 'rgb(255 0 0 / 20%) 0px 10px 30px 0px' : '0 10px 30px 0 rgba(0,0,0,0.2)'}" *ngFor="let n of Deals" (click)="navigateEditDeal(n.id)">
       <div class="dealCardImage" #imageDiv>
         <img *ngIf="n.images.length > 0" src="{{ n.images[0] }}">
       </div>

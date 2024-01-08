@@ -51,7 +51,7 @@ export class CreateDealComponent{
 
   onSubmit() {
     if (!this.isValid()) {
-      this.toastr.error("Er is een fout met een van de velden", "Error")
+      this.toastr.error("Een van de velden is niet correct ingevuld")
     } else {
       let today = new Date()
       if (this.selectedDate.getFullYear() == today.getFullYear() && this.selectedDate.getMonth() == today.getMonth() && this.selectedDate.getDay() == today.getDay()){
@@ -61,7 +61,7 @@ export class CreateDealComponent{
       console.log(deal)
       this.dealService.postDeal(deal).subscribe(result =>{
         if(result == null){
-          this.toastr.error("Deal is verzonden maar niet opgeslagen", "Error")
+          this.toastr.error("De deal kon niet worden opgeslagen.")
         } else {
           this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
           this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
@@ -70,6 +70,9 @@ export class CreateDealComponent{
     }
   }
 
+  public HasDatePassed(date : Date) : Boolean {
+    return new Date(date) > new Date()
+  }
 
   isValid(): boolean {
     return true;

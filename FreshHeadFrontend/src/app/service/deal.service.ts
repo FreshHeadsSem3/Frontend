@@ -6,7 +6,6 @@ import {Category} from "../model/deal/category"
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../model/deal/createmodel";
 import {EmailModel} from "../model/email-model";
-import {Company} from '../model/company/company';
 import {RemoveParticipant} from "../model/remove-participant";
 import {AuthenticationService} from "./authentication.service";
 
@@ -31,8 +30,9 @@ export class DealService {
     return this.http.get<Deal[]>(this.apiURL, this.httpOptions)
   }
 
-  getAllDealsByCatagory(catagory: string) : Observable<Deal[]>{
-    return this.http.get<Deal[]>(this.apiURL+"/deals/category/"+catagory, this.httpOptions)
+  getAllDealsByCategory(categoryID: Guid) : Observable<Deal[]>{
+    console.log(categoryID)
+    return this.http.get<Deal[]>(this.apiURL+"/deals/category/"+categoryID.toString(), this.httpOptions)
   }
 
   getDealByID(dealID: Guid) : Observable<Deal>{
@@ -50,15 +50,12 @@ export class DealService {
   getParticipantEmailsByDeal(dealID: Guid): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiURL}/GetParticipantsEmailByDeal/${dealID}`);
   }
+  updateDeal(deal : Deal) : Observable<Deal>{
+    console.log(deal)
+    return this.http.put<Deal>(this.apiURL+"/UpdateDeal", JSON.stringify(deal), this.httpOptions)
+  }
 
   postDeal(createDeal: Createmodel) : Observable<Deal>{
-    this.httpOptionsWithToken = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`
-      })
-    };
-    console.log(this.httpOptionsWithToken, "DIt is de hader")
     return this.http.post<Deal>(this.apiURL, JSON.stringify(createDeal), this.httpOptionsWithToken)
   }
 
@@ -72,5 +69,13 @@ export class DealService {
 
   getAllCategories() : Observable<Category[]>{
     return this.http.get<Category[]>(this.apiURL+'Category', this.httpOptions)
+  }
+
+  searchByName(title: string) : Observable<Deal[]>{
+    return this.http.get<Deal[]>(this.apiURL+"/deals/title/"+title, this.httpOptions)
+  }
+
+  searchByCompanyName(title: string) : Observable<Deal[]>{
+  return this.http.get<Deal[]>(this.apiURL+"/deals/company/"+title, this.httpOptions)
   }
 }

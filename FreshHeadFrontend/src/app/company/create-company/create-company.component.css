@@ -32,3 +32,13 @@ body{
 form{
   max-height: 92vh;
 }
+
+.form-label {
+  margin-bottom: 2px;
+}
+
+.company-aanmaken p {
+  font-size: 13px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}

@@ -13,12 +13,13 @@ import { CompanyService } from 'src/app/service/company.service';
 export class CompaniesComponent {
   public AllCompanies: Company[] = [];
   public ErrorMassage: string = "";
+  public CompanyTitle: string = "";
 
   constructor(private companyService: CompanyService, private router: Router, private toastr: ToastrService) {
     this.companyService.getAllCompanies()
       .subscribe(element => {
         if (element == null){
-          this.toastr.error("Er zijn geen companies gevonden", "Error")
+          this.toastr.error("Er zijn geen companies gevonden")
         } else {
           this.AllCompanies = element
         }
@@ -31,5 +32,18 @@ export class CompaniesComponent {
 
   public MustDateBeShown(date: Date) : Boolean {
     return new Date(date) > new Date("2001-01-01");
+  }
+
+  public SearchByName(title: string){
+    console.log(title)
+    this.companyService.searchByName(title).subscribe(element => {
+      if (element == null){
+        this.toastr.error("Er zijn geen deals gevonden")
+      } else if(element.length == 0) {
+        this.toastr.info("Er zijn geen bedrijven beschikbaar met deze naam")
+      } else {
+        this.AllCompanies = element
+      }
+    })
   }
 }
