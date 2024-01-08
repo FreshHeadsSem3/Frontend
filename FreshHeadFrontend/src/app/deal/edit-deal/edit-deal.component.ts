@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {DateAdapter} from '@angular/material/core';
 import {Deal} from "../../model/deal/deal";
 import {Category} from "../../model/deal/category";
+import {ModalService} from "../../service/modal.service";
 
 @Component({
   selector: 'app-edit-deal',
@@ -18,9 +19,9 @@ export class EditDealComponent {
   public deal! : Deal;
   public categories: Category[] = [];
   public selectedCategorie!: Guid;
+  public participantMails: string[] = [];
 
-
-  constructor(private router: ActivatedRoute, private dealService: DealService, private adapter: DateAdapter<any>, private toastr: ToastrService, private _router: Router) {
+  constructor(private router: ActivatedRoute, private dealService: DealService, private adapter: DateAdapter<any>, private toastr: ToastrService, private _router: Router, protected modalService: ModalService) {
     this.adapter.setLocale('nl')
   }
 
@@ -42,6 +43,9 @@ export class EditDealComponent {
             this.deal.eventDate = new Date(1,1,1)
           }
         }
+        this.dealService.getParticipantEmailsByDeal(this.DealID).subscribe(emails => {
+          this.participantMails = emails
+        })
       })
     });
     this.dealService.getAllCategories().subscribe(element => {

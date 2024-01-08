@@ -13,8 +13,6 @@ import {Router} from "@angular/router";
 export class DealManagementComponent {
 
   public Deals : Deal[] = []
-  public participantEmails: string[] = [];
-
 
   constructor(private companyService: CompanyService, private dealService: DealService, private router: Router) {
     dealService.getDealByCompanyJWT().subscribe(result => {
@@ -23,19 +21,14 @@ export class DealManagementComponent {
       } else {
         this.Deals = result;
         console.log(this.Deals)
+        this.Deals.forEach((deal) => {
+        })
       }
     })
   }
 
   public MustDateBeShown(date: Date) : Boolean {
     return new Date(date) > new Date("2001-01-01");
-  }
-
-  public loadParticipantEmails(dealID: Guid): void {
-    this.dealService.getParticipantEmailsByDeal(dealID).subscribe(
-      emails => this.participantEmails = emails,
-      error => console.error('Error fetching participant emails', error)
-    );
   }
 
   public navigateInfoDeal(dealID: Guid) {

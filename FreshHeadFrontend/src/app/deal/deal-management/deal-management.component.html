@@ -12,9 +12,6 @@
         <p class="dealCardExpireDate" [style]="{'color': HasDatePassed(n.activeTill) ? 'black' : 'red'}" *ngIf="MustDateBeShown(n.activeTill)">{{n.activeTill | date:'dd/MM/yyyy'}}</p>
         <p class="dealCardExpireParticipants" [style]="{'color': n.maxParticipants - n.claimed == 0 ? 'red' : 'black'}" *ngIf="n.maxParticipants > 0">{{n.maxParticipants - n.claimed}} over</p>
       </div>
-      <ul>
-        <li *ngFor="let email of participantEmails">{{ email }}</li>
-      </ul>
     </div>
   </div>
 </div>

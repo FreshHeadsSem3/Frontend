@@ -37,4 +37,13 @@
     <button (click)="Opslaan()" class="btn btn-primary" style="margin-right: 10px;">Opslaan</button><button (click)="Cancel()" class="btn btn-danger">Cancel</button>
   </div>
   </div>
+  <button class="corner_button" (click)="modalService.open('modal-2')">Zie deelnemers</button>
+
+
+  <jw-modal id="modal-2">
+    <h1>{{this.deal.title}}</h1>
+    <ul>
+      <li *ngFor="let participantMail of this.participantMails">{{participantMail}}</li>
+    </ul>
+  </jw-modal>
 </div>
