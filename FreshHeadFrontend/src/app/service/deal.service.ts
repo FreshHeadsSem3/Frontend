@@ -47,6 +47,9 @@ export class DealService {
     return this.http.get<Deal[]>(this.apiURL+"/companyJWT/", this.httpOptions)
   }
 
+  getParticipantEmailsByDeal(dealID: Guid): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiURL}/GetParticipantsEmailByDeal/${dealID}`);
+  }
   updateDeal(deal : Deal) : Observable<Deal>{
     console.log(deal)
     return this.http.put<Deal>(this.apiURL+"/UpdateDeal", JSON.stringify(deal), this.httpOptions)
