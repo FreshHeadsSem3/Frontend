@@ -74,14 +74,15 @@
         <div class="card mb-4">
           <div class="card-body">
             <h3 class="h6">Foto</h3>
-            <input type="text" class="form-control" [(ngModel)]="image">
             <p>Vul hier de link in naar de foto die zichtbaar moet zijn bij de deal</p>
+            <input type="text" class="form-control" [(ngModel)]="image">
           </div>
         </div>
       </div>
 
       <div class="preview">
-        <p>Preview</p>
+        <h3 class="h6">Preview</h3>
+        <p style="font-size: 13px; margin-top: 0; margin-bottom: 5px;">Zie hier hoe uw deal er op de website uit komt te zien.</p>
         <div class="dealCardPreview">
           <div class="dealCardImagePreview" #imageDiv>
             <img *ngIf="image" [src]="image" alt="Afbeelding niet gevonden" class="custom-avatar-img">
