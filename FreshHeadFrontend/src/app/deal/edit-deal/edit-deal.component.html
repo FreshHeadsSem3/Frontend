@@ -1,0 +1,49 @@
+<div class="deal_container">
+  <img class="deal_image" src="{{this.deal.images[0]}}">
+  <h5 style="width: 50vw; padding: 10px 0 5px 0; margin: 0">foto</h5>
+  <input type="text" [(ngModel)]="this.deal.images[0]" value="{{this.deal.images[0]}}" style="width: 50vw">
+  <div class="dealinfocontainer">
+    <div class="DIC_eventDatum" [style]="{'color': HasDatePassed(this.deal.eventDate) ? 'black' : 'red'}">Datum van event:
+      <mat-form-field>
+        <input [(ngModel)]="deal.eventDate" matInput [matDatepicker]="eventDate">
+        <mat-datepicker-toggle matSuffix [for]="eventDate"></mat-datepicker-toggle>
+        <mat-datepicker #eventDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="DIC_datum" [style]="{'color': HasDatePassed(this.deal.activeTill) ? 'black' : 'red'}">Eind datum deal:
+      <mat-form-field>
+        <input [(ngModel)]="deal.activeTill" matInput [matDatepicker]="activeTill">
+        <mat-datepicker-toggle matSuffix [for]="activeTill"></mat-datepicker-toggle>
+        <mat-datepicker #activeTill></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="DIC-participantcount" style="width: 18vw; align-self: center;">Totaal: <input type="number" value="{{this.deal.maxParticipants}}" [(ngModel)]="deal.maxParticipants" style="width: 80px" min="0"/> | Over: {{this.deal.maxParticipants - this.deal.claimed}}</div>
+  </div>
+  <div class="title_container">
+    <input type="text" class="title" [(ngModel)]="this.deal.title" value="{{this.deal.title}}"/>
+  </div>
+  <textarea type="text" class="description" [(ngModel)]="this.deal.description">{{this.deal.description}}</textarea>
+
+  <input class="location_div" *ngIf="this.deal.location.length > 4" value="{{this.deal.location}}" [(ngModel)]="this.deal.location">
+  <div style="display: flex; width: 50vw; margin-bottom: 35px; justify-content: space-between;">
+  <div style="display: flex; flex-direction: column;">
+    <label class="form-label">Categorie</label>
+    <select style="width: 200px" class="form-select" [(ngModel)]="deal.dealCategory">
+      <option *ngFor="let catagory of this.categories" [ngValue]="catagory.name">{{catagory.name}}</option>
+    </select>
+  </div>
+
+  <div style="margin: 10px 0 70px 0; display: flex; justify-content: flex-end;">
+    <button (click)="Opslaan()" class="btn btn-primary" style="margin-right: 10px;">Opslaan</button><button (click)="Cancel()" class="btn btn-danger">Cancel</button>
+  </div>
+  </div>
+  <button class="corner_button" (click)="modalService.open('modal-2')">Zie deelnemers</button>
+
+
+  <jw-modal id="modal-2">
+    <h1>{{this.deal.title}}</h1>
+    <ul>
+      <li *ngFor="let participantMail of this.participantMails">{{participantMail}}</li>
+    </ul>
+  </jw-modal>
+</div>

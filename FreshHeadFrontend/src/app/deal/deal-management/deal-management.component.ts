@@ -14,7 +14,6 @@ export class DealManagementComponent {
 
   public Deals : Deal[] = []
 
-
   constructor(private companyService: CompanyService, private dealService: DealService, private router: Router) {
     dealService.getDealByCompanyJWT().subscribe(result => {
       if(result == null){
@@ -22,6 +21,8 @@ export class DealManagementComponent {
       } else {
         this.Deals = result;
         console.log(this.Deals)
+        this.Deals.forEach((deal) => {
+        })
       }
     })
   }
@@ -30,11 +31,20 @@ export class DealManagementComponent {
     return new Date(date) > new Date("2001-01-01");
   }
 
-  navigateInfoDeal(dealID: Guid) {
+  public navigateInfoDeal(dealID: Guid) {
     this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(dealID) } });
   }
+  public navigateEditDeal(dealID: Guid) {
+    this.router.navigate(['editDeal'], { queryParams: { data: JSON.stringify(dealID) } });
+  }
 
-  public HasDatePassed(date : Date) : Boolean {
-    return new Date(date) > new Date()
+  public HasDatePassed(date : Date) : boolean {
+    if(new Date(date) < new Date()){
+      if(new Date(date) < new Date(2001,1)){
+        return true;
+      }
+      return false;
+    }
+    return true;
   }
 }
