@@ -13,8 +13,8 @@
     <a routerLink="/manage-deals" class="link" *ngIf="this.isLogedin == true">Deals beheren</a>
   </div>
   <div class="nav_login">
-    <a routerLink="/login" class="link" *ngIf="this.isLogedin == false">Inloggen</a>
-    <a routerLink="/" class="link" *ngIf="this.isLogedin == true" (click)="Logout()">Uitloggen</a>
+    <a routerLink="/login" class="link" id="login" *ngIf="this.isLogedin == false">Inloggen</a>
+    <a routerLink="/" class="link" id="logout" *ngIf="this.isLogedin == true" (click)="Logout()">Uitloggen</a>
   </div>
 </header>
 <router-outlet></router-outlet>

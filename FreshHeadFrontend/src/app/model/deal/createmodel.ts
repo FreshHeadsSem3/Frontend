@@ -17,5 +17,6 @@ export class Createmodel {
     this.MaxParticipants = MaxParticipants;
     this.ActiveTill = ActiveTill
     this.CategoryID = CategoryID;
+    
   }
 }

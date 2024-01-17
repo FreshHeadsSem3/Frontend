@@ -58,6 +58,7 @@ export class InfoDealsComponent {
             this.toastr.success("De mail is succesvol verzonden", "Voltooid")
             this.modalService.close()
             this.disableSendButton = false
+            this._router.navigate(['alldeals'])
           }
         }
       )

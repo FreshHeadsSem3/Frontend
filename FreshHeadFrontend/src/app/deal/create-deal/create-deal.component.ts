@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {Guid} from "guid-typescript";
 import {Createmodel} from "../../model/deal/createmodel";
 import {ToastrService} from "ngx-toastr";
-import { Company } from 'src/app/model/company/company';
+import { Company } from '../../model/company/company';
 import {Category} from "../../model/deal/category";
 import {DateAdapter} from '@angular/material/core';
 

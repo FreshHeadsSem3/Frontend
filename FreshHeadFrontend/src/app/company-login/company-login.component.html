@@ -1,13 +1,13 @@
 <div class="login-form">
   <div class="col-lg-6">
       <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="text" class="form-control" [(ngModel)]="UserEmail">
+        <label class="form-label" >Email</label>
+        <input type="text" class="form-control" id="email" [(ngModel)]="UserEmail">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control" [(ngModel)]="UserPassword">
+        <input type="password" class="form-control" id="password" [(ngModel)]="UserPassword">
 
         <form (ngSubmit)="onSubmit()">
-          <button type="submit" class="btn btn-primary" style="margin-top: 10px">Login</button>
+          <button type="submit" id="submitBT" class="btn btn-primary" style="margin-top: 10px">Login</button>
         </form>
         <div style="margin-top: 10px">
           <a routerLink="/create-company" class="link">Registreren</a>

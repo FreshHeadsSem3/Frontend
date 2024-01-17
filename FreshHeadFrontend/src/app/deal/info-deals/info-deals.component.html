@@ -9,15 +9,15 @@
     <h1 class="title">{{ this.deal.title}} </h1>
   </div>
   <p class="description">{{ this.deal.description}} </p>
-  <button class="corner_button" (click)="modalService.open('modal-1')">Ik doe mee!</button>
+  <button class="corner_button" id="IkDoeMeeBT" (click)="modalService.open('modal-1')">Ik doe mee!</button>
 
   <div class="location_div" *ngIf="this.deal.location.length > 4">Locatie: {{this.deal.location}}</div>
 
   <jw-modal id="modal-1">
     <h1>{{this.deal.title}}</h1>
     <p>Meld je aan voor deze deal!<br> Hiervoor hebben wij alleen jouw E-mail adres nodig.</p>
-    <input type="text" placeholder="E-mail address" [(ngModel)]="UserEmail"/><br><br>
-    <button class="mail-button" (click)="SendEmail()" [disabled]="disableSendButton">Deal verzenden</button>
+    <input id="Email" type="text" placeholder="E-mail address" [(ngModel)]="UserEmail"/><br><br>
+    <button class="mail-button" id="dealVerzendenBT" (click)="SendEmail()" [disabled]="disableSendButton">Deal verzenden</button>
     <button class="exit-button" (click)="modalService.close();">Close</button>
   </jw-modal>
 </div>
