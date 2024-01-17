@@ -63,7 +63,7 @@ export class CreateDealComponent{
         if(result == null){
           this.toastr.error("De deal kon niet worden opgeslagen.")
         } else {
-          this.toastr.success("Deal is succesvol opgeslagen", "Succes!")
+          this.toastr.success("De deal is succesvol opgeslagen", "Succes!")
           this.router.navigate(['deal'], { queryParams: { data: JSON.stringify(result.id) }});
         }
       })
@@ -79,7 +79,7 @@ export class CreateDealComponent{
   }
 
   cancel() {
-    this.toastr.info("Deal aanmaken geannulleerd", "Info")
+    this.toastr.info("Deal aanmaken geannuleerd", "Info")
     this.router.navigate([''])
   }
 

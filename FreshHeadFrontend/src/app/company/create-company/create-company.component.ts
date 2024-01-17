@@ -47,7 +47,7 @@ export class CreateCompanyComponent {
       let company: Createmodel = new Createmodel(this.title, this.description, this.kvk, [this.image], this.email, this.password, this.link1, this.link2, this.link3, this.link4)
       this.companyService.postCompany(company).subscribe(result =>{
         if(result == null){
-          this.toastr.error("Het bedrijf niet aangemaakt")
+          this.toastr.error("Het bedrijf is niet aangemaakt")
           console.log("Company is empty")
         } else {
           this.toastr.success("Het bedrijf is aangemaakt")
